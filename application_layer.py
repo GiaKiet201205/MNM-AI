@@ -86,4 +86,4 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
     sources = [{"file": d.metadata.get("source_file"), "preview": d.page_content[:100]} for d in relevant_docs]
 
     prompt = f"Ngữ cảnh:\n{context}\n\nCâu hỏi: {query}\nTrả lời:"
-    return {"answer": llm.invoke(prompt).strip(), "sources": sources}
+    return {"answer": llm.invoke(prompt).strip(), "sources": sources}           
