@@ -204,7 +204,14 @@ Trả lời chi tiết:"""
         "detail": f"Grounded: {'✅ Có căn cứ' if hall_check['grounded'] else '⚠️ Có thể suy diễn'} | Confidence: {hall_check['confidence']}%"
     })
 
-    sources = [{"file": d.metadata.get("source_file", "?"), "preview": d.page_content[:120]} for d in relevant_docs[:k]]
+    sources = [{
+        "file": d.metadata.get("source_file", "?"),
+        "page": (d.metadata.get("page", 0) or 0) + 1,
+        "chunk_id": d.metadata.get("chunk_id", 0),
+        "score": 1.0,
+        "preview": d.page_content[:120],
+        "full_content": d.page_content,
+    } for d in relevant_docs[:k]]
 
     return {
         "answer": answer,
