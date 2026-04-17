@@ -1,21 +1,110 @@
-# app.py
+# app.py — SmartDoc AI với chế độ so sánh RAG vs CO-RAG
 import streamlit as st
 import uuid
 from data_layer import load_chat_history, save_chat_history
 from application_layer import process_file, create_vector_store, answer_question
+from corag_layer import answer_with_corag
 
 st.set_page_config(page_title="SmartDoc AI", page_icon="✨", layout="wide")
 
-# Custom CSS
+# ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-    .welcome-title { text-align: center; font-size: 2.5rem; font-weight: 600; margin-top: 5vh; }
-    .citation-box { background: #2b2b2b; padding: 10px; border-radius: 5px; margin-top: 5px; font-size: 0.8rem; }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* { font-family: 'Space Grotesk', sans-serif; }
+code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ── Mode selector tabs ── */
+.mode-bar {
+    display: flex; gap: 8px; padding: 12px 0; margin-bottom: 8px;
+}
+.mode-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+}
+.badge-rag { background: #1e3a5f; color: #60a5fa; border: 1px solid #2563eb30; }
+.badge-corag { background: #1a1a2e; color: #a78bfa; border: 1px solid #7c3aed30; }
+.badge-compare { background: #1a2e1a; color: #4ade80; border: 1px solid #16a34a30; }
+
+/* ── Panels ── */
+.panel-rag {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid #2563eb40;
+    border-radius: 12px; padding: 16px;
+    box-shadow: 0 4px 24px #2563eb15;
+}
+.panel-corag {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%);
+    border: 1px solid #7c3aed40;
+    border-radius: 12px; padding: 16px;
+    box-shadow: 0 4px 24px #7c3aed15;
+}
+.panel-header-rag {
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
+    color: #60a5fa; text-transform: uppercase; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid #2563eb30;
+}
+.panel-header-corag {
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
+    color: #a78bfa; text-transform: uppercase; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid #7c3aed30;
+}
+
+/* ── CO-RAG step log ── */
+.step-log {
+    background: #0a0a14; border: 1px solid #7c3aed25;
+    border-radius: 8px; padding: 10px 14px; margin-top: 10px;
+}
+.step-item {
+    display: flex; gap: 10px; padding: 5px 0;
+    border-bottom: 1px solid #ffffff08; font-size: 0.78rem;
+}
+.step-item:last-child { border-bottom: none; }
+.step-name { color: #a78bfa; font-weight: 600; min-width: 220px; }
+.step-detail { color: #94a3b8; }
+
+/* ── Confidence bar ── */
+.conf-bar-wrap {
+    background: #ffffff10; border-radius: 99px; height: 6px;
+    margin: 6px 0 2px; overflow: hidden;
+}
+.conf-bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    transition: width 0.5s ease;
+}
+.conf-label { font-size: 0.72rem; color: #64748b; }
+
+/* ── Quality badge ── */
+.quality-high { color: #4ade80; font-weight: 700; }
+.quality-medium { color: #fbbf24; font-weight: 700; }
+.quality-low { color: #f87171; font-weight: 700; }
+
+/* ── Welcome ── */
+.welcome-title {
+    text-align: center; font-size: 2.2rem; font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #4ade80 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-top: 5vh; letter-spacing: -0.02em;
+}
+.welcome-sub {
+    text-align: center; color: #475569; font-size: 0.95rem; margin-top: 8px;
+}
+
+/* ── Source chips ── */
+.src-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #1e293b; border: 1px solid #334155;
+    border-radius: 6px; padding: 3px 10px; font-size: 0.72rem;
+    color: #94a3b8; margin: 3px 2px;
+}
 </style>
 """, unsafe_allow_html=True)
 
 
+# ─── Init ─────────────────────────────────────────────────────────────────────
 def init_session():
     saved = load_chat_history()
     if saved:
@@ -24,37 +113,47 @@ def init_session():
     else:
         new_id = str(uuid.uuid4())
         st.session_state.chat_sessions = {
-            new_id: {"name": "Trò chuyện mới", "history": [], "documents": {}, "all_chunks_data": []}}
+            new_id: {"name": "Trò chuyện mới", "history": [], "documents": {}, "all_chunks_data": []}
+        }
         st.session_state.current_id = new_id
 
-    # Cấu hình mặc định
-    defaults = {'chunk_size': 1000, 'chunk_overlap': 100, 'use_hybrid': False, 'use_reranking': False, 'retriever_k': 3,
-                'confirm_del_id': None, 'confirm_clear_docs': False}
+    defaults = {
+        'chunk_size': 1000, 'chunk_overlap': 100,
+        'use_hybrid': False, 'use_reranking': False,
+        'retriever_k': 3, 'confirm_del_id': None,
+        'confirm_clear_docs': False,
+        'app_mode': 'rag'   # 'rag' | 'corag' | 'compare'
+    }
     for k, v in defaults.items():
-        if k not in st.session_state: st.session_state[k] = v
+        if k not in st.session_state:
+            st.session_state[k] = v
 
 
-if 'chat_sessions' not in st.session_state: init_session()
+if 'chat_sessions' not in st.session_state:
+    init_session()
 
-# Lấy session hiện tại
 active_id = st.session_state.current_id
 active_session = st.session_state.chat_sessions[active_id]
 
-# Quản lý Vector Store theo Session (Sandbox)
+# Vector store management
 if active_session["all_chunks_data"] and 'vector_store' not in st.session_state:
     st.session_state.vector_store = create_vector_store(active_session["all_chunks_data"])
 elif not active_session["all_chunks_data"] and 'vector_store' in st.session_state:
     del st.session_state.vector_store
 
-# ─── Sidebar ────────────────────────────────────────────────────────
+
+# ─── Sidebar ─────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("### 💬 Lịch sử trò chuyện")
+
     if st.button("➕ Trò chuyện mới", use_container_width=True):
         new_id = str(uuid.uuid4())
-        st.session_state.chat_sessions[new_id] = {"name": "Trò chuyện mới", "history": [], "documents": {},
-                                                  "all_chunks_data": []}
+        st.session_state.chat_sessions[new_id] = {
+            "name": "Trò chuyện mới", "history": [], "documents": {}, "all_chunks_data": []
+        }
         st.session_state.current_id = new_id
-        if 'vector_store' in st.session_state: del st.session_state.vector_store
+        if 'vector_store' in st.session_state:
+            del st.session_state.vector_store
         save_chat_history(st.session_state.chat_sessions)
         st.rerun()
 
@@ -64,10 +163,12 @@ with st.sidebar:
             if st.button(sdata['name'], key=f"s_{sid}", use_container_width=True,
                          type="primary" if sid == active_id else "secondary"):
                 st.session_state.current_id = sid
-                if 'vector_store' in st.session_state: del st.session_state.vector_store
+                if 'vector_store' in st.session_state:
+                    del st.session_state.vector_store
                 st.rerun()
         with col_del:
-            if st.button("🗑️", key=f"del_{sid}"): st.session_state.confirm_del_id = sid
+            if st.button("🗑️", key=f"del_{sid}"):
+                st.session_state.confirm_del_id = sid
 
     if st.session_state.confirm_del_id:
         st.warning("Xóa chat này?")
@@ -87,33 +188,109 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # TRẢ LẠI NGUYÊN BẢN CẤU HÌNH HỆ THỐNG
+    # ── Mode Selector ──
+    st.markdown("### 🔀 Chế độ hoạt động")
+    mode_options = {
+        "🔵 RAG (Chuẩn)": "rag",
+        "🟣 CO-RAG (Nâng cao)": "corag",
+    }
+    selected_label = st.radio(
+        "Chọn chế độ:",
+        list(mode_options.keys()),
+        index=list(mode_options.values()).index(st.session_state.app_mode),
+        label_visibility="collapsed"
+    )
+    st.session_state.app_mode = mode_options[selected_label]
+
+    if st.session_state.app_mode == "corag":
+        st.success("🛡️ CO-RAG: Tự đánh giá, viết lại query và kiểm tra hallucination", icon="✅")
+
+    st.markdown("---")
+
+    # ── System Config ──
     with st.expander("⚙️ Cấu hình hệ thống"):
         st.session_state.chunk_size = st.slider("Chunk Size", 500, 2000, st.session_state.chunk_size)
         st.session_state.chunk_overlap = st.slider("Chunk Overlap", 50, 200, st.session_state.chunk_overlap)
         st.session_state.use_hybrid = st.toggle("🔀 Hybrid Search", value=st.session_state.use_hybrid)
         st.session_state.use_reranking = st.toggle("🎯 Rerank (Cross-Encoder)", value=st.session_state.use_reranking)
+        st.session_state.retriever_k = st.slider("Top-K Retrieval", 1, 8, st.session_state.retriever_k)
 
-# ─── Main Area ───────────────────────────────────────────────────────
+# ─── Helper: Render một message trong history ────────────────────────────────
+def render_history_message(msg, mode):
+    """Vẽ một message từ history, hỗ trợ cả RAG và CO-RAG metadata"""
+    role = msg["role"]
+    avatar = "🧑‍💻" if role == "user" else ("🟣" if mode == "corag" else "🔵")
+
+    with st.chat_message(role, avatar=avatar):
+        st.markdown(msg["content"])
+        if role == "assistant" and msg.get("corag_meta") and mode == "corag":
+            _render_corag_meta(msg["corag_meta"])
+
+
+def _render_corag_meta(meta: dict):
+    """Hiển thị thông tin bổ sung của CO-RAG (steps, confidence, quality...)"""
+    conf = meta.get("confidence", 0)
+    grounded = meta.get("grounded", True)
+    quality = meta.get("relevance_quality", "n/a")
+    rewritten = meta.get("query_rewritten", False)
+    rewritten_q = meta.get("rewritten_query", "")
+    steps = meta.get("corag_steps", [])
+
+    # Confidence bar
+    bar_color = "#4ade80" if conf >= 70 else ("#fbbf24" if conf >= 40 else "#f87171")
+    quality_class = f"quality-{quality}" if quality in ("high", "medium", "low") else ""
+    ground_icon = "✅" if grounded else "⚠️"
+
+    st.markdown(f"""
+    <div style="margin-top:10px; padding:10px; background:#0a0a14; border-radius:8px; border:1px solid #7c3aed25;">
+        <div style="display:flex; gap:16px; font-size:0.78rem; margin-bottom:8px; flex-wrap:wrap;">
+            <span>{ground_icon} <b style="color:#94a3b8">Grounded</b></span>
+            <span>📊 Chất lượng: <span class="{quality_class}">{quality.upper()}</span></span>
+            {"<span>✏️ Query đã viết lại: <i style='color:#a78bfa'>" + rewritten_q + "</i></span>" if rewritten else ""}
+        </div>
+        <div class="conf-label">Confidence: {conf}%</div>
+        <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:{conf}%; background:linear-gradient(90deg,{bar_color},{bar_color}aa)"></div></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if steps:
+        with st.expander("🔍 Xem các bước CO-RAG"):
+            step_html = '<div class="step-log">'
+            for s in steps:
+                step_html += f'<div class="step-item"><span class="step-name">{s["step"]}</span><span class="step-detail">{s["detail"]}</span></div>'
+            step_html += '</div>'
+            st.markdown(step_html, unsafe_allow_html=True)
+
+
+# ─── Main Area ────────────────────────────────────────────────────────────────
+mode = st.session_state.app_mode
+
+# Welcome screen
 if not active_session["history"]:
     st.markdown('<div class="welcome-title">✨ SmartDoc AI</div>', unsafe_allow_html=True)
+    mode_desc = {
+        "rag": "Chế độ RAG chuẩn — truy xuất nhanh, đơn giản",
+        "corag": "Chế độ CO-RAG nâng cao — tự đánh giá & sửa lỗi retrieval"
+    }
+    st.markdown(f'<div class="welcome-sub">{mode_desc[mode]}</div>', unsafe_allow_html=True)
 
+# Render history
 for msg in active_session["history"]:
-    with st.chat_message(msg["role"], avatar="🧑‍💻" if msg["role"] == "user" else "✨"):
-        st.markdown(msg["content"])
+    render_history_message(msg, mode)
 
-# Upload & Clear File (Gemini style)
+# ── Upload / Clear Files ──
 with st.container():
-    # --- PHẦN THÊM MỚI: HIỂN THỊ DANH SÁCH FILE ĐÃ LƯU ---
     if active_session["documents"]:
-        st.markdown("**📄 Các tài liệu đang được dùng trong chat này:**")
+        st.markdown("**📄 Tài liệu trong chat này:**")
         for doc_name in active_session["documents"].keys():
             st.caption(f"✅ {doc_name}")
-    # ----------------------------------------------------
 
     col_up, col_clr = st.columns([0.7, 0.3])
     with col_up:
-        up_files = st.file_uploader("Tải thêm tài liệu cho chat này", type=['pdf', 'docx'], accept_multiple_files=True, label_visibility="collapsed")
+        up_files = st.file_uploader(
+            "Tải thêm tài liệu", type=['pdf', 'docx'],
+            accept_multiple_files=True, label_visibility="collapsed"
+        )
     with col_clr:
         if active_session["documents"] and st.button("🗑️ Clear Vector Store", use_container_width=True):
             st.session_state.confirm_clear_docs = True
@@ -135,7 +312,8 @@ with st.container():
         b1, b2 = st.columns(2)
         if b1.button("✅ Xóa hết"):
             active_session["documents"], active_session["all_chunks_data"] = {}, []
-            if 'vector_store' in st.session_state: del st.session_state.vector_store
+            if 'vector_store' in st.session_state:
+                del st.session_state.vector_store
             st.session_state.confirm_clear_docs = False
             save_chat_history(st.session_state.chat_sessions)
             st.rerun()
@@ -143,20 +321,47 @@ with st.container():
             st.session_state.confirm_clear_docs = False
             st.rerun()
 
-# Input
+
+# ─── Chat Input ───────────────────────────────────────────────────────────────
 if query := st.chat_input("Hỏi SmartDoc..."):
     active_session["history"].append({"role": "user", "content": query})
-    if len(active_session["history"]) == 1: active_session["name"] = query[:25]
+    if len(active_session["history"]) == 1:
+        active_session["name"] = query[:25]
 
     with st.chat_message("user", avatar="🧑‍💻"):
         st.markdown(query)
-    with st.chat_message("assistant", avatar="✨"):
-        with st.spinner("Đang nghĩ..."):
-            res = answer_question(query, st.session_state.get('vector_store'), active_session["all_chunks_data"],
-                                  active_session["history"], st.session_state.use_reranking,
-                                  st.session_state.retriever_k, st.session_state.use_hybrid)
-            st.markdown(res["answer"])
-            active_session["history"].append(
-                {"role": "assistant", "content": res["answer"], "sources": res.get("sources", [])})
-            save_chat_history(st.session_state.chat_sessions)
-            st.rerun()
+
+    vs = st.session_state.get('vector_store')
+    chunks = active_session["all_chunks_data"]
+
+    from application_layer import mods  # dùng chung mods đã load
+
+    # ── Chế độ RAG đơn ──────────────────────────────────────────────────────
+    if mode == "rag":
+        with st.chat_message("assistant", avatar="🔵"):
+            with st.spinner("⚡ RAG đang xử lý..."):
+                res = answer_question(query, vs, chunks, active_session["history"],
+                                      st.session_state.use_reranking,
+                                      st.session_state.retriever_k, st.session_state.use_hybrid)
+                st.markdown(res["answer"])
+                active_session["history"].append({"role": "assistant", "content": res["answer"], "sources": res.get("sources", [])})
+
+    # ── Chế độ CO-RAG đơn ───────────────────────────────────────────────────
+    elif mode == "corag":
+        with st.chat_message("assistant", avatar="🟣"):
+            with st.spinner("🛡️ CO-RAG đang đánh giá và xử lý..."):
+                cres = answer_with_corag(query, vs, chunks, active_session["history"],
+                                         st.session_state.use_reranking,
+                                         st.session_state.retriever_k, st.session_state.use_hybrid, mods)
+                st.markdown(cres["answer"])
+                meta = {k: cres[k] for k in ["corag_steps", "confidence", "grounded",
+                                               "query_rewritten", "rewritten_query",
+                                               "relevance_quality", "relevant_ratio"]}
+                _render_corag_meta(meta)
+                active_session["history"].append({
+                    "role": "assistant", "content": cres["answer"],
+                    "sources": cres.get("sources", []), "corag_meta": meta
+                })
+
+    save_chat_history(st.session_state.chat_sessions)
+    st.rerun()
