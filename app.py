@@ -260,8 +260,7 @@ with st.sidebar:
     for sid, sdata in reversed(list(st.session_state.chat_sessions.items())):
         col_name, col_del = st.columns([0.8, 0.2])
         with col_name:
-            if st.button(sdata['name'], key=f"s_{sid}", use_container_width=True,
-                         type="primary" if sid == active_id else "secondary"):
+            if st.button(sdata['name'], key=f"s_{sid}", use_container_width=True,type="secondary"):
                 st.session_state.current_id = sid
                 if 'vector_store' in st.session_state:
                     del st.session_state.vector_store
@@ -273,7 +272,7 @@ with st.sidebar:
     if st.session_state.confirm_del_id:
         st.warning("Xóa chat này?")
         c1, c2 = st.columns(2)
-        if c1.button("✅", key="y_c"):
+        if c1.button("Xác nhận", key="y_c"):
             del st.session_state.chat_sessions[st.session_state.confirm_del_id]
             st.session_state.confirm_del_id = None
             if not st.session_state.chat_sessions:
@@ -282,7 +281,7 @@ with st.sidebar:
                 st.session_state.current_id = list(st.session_state.chat_sessions.keys())[0]
             save_chat_history(st.session_state.chat_sessions)
             st.rerun()
-        if c2.button("❌", key="n_c"):
+        if c2.button("Hủy", key="n_c"):
             st.session_state.confirm_del_id = None
             st.rerun()
 
@@ -291,8 +290,8 @@ with st.sidebar:
     # ── Mode Selector ──
     st.markdown("### 🔀 Chế độ hoạt động")
     mode_options = {
-        "🔵 RAG (Chuẩn)": "rag",
-        "🟣 CO-RAG (Nâng cao)": "corag",
+        "RAG (Chuẩn)": "rag",
+        "CO-RAG (Nâng cao)": "corag",
     }
     selected_label = st.radio(
         "Chọn chế độ:",
