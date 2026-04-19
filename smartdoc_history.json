@@ -43,5 +43,1547 @@
     ],
     "documents": {},
     "all_chunks_data": []
+  },
+  "a5d7d624-65d6-42ea-b14e-58f0bfb3693b": {
+    "name": "RAG là gì?",
+    "history": [
+      {
+        "role": "user",
+        "content": "RAG là gì?"
+      },
+      {
+        "role": "assistant",
+        "content": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation: Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 7,
+            "chunk_id": 13,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết hợp hai thành phần:\n1. Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n2. Generation (Sinh): Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã\ntruy xuất\n2.1.2 Kiến trúc RAG\nKiến trúc RAG cơ bản bao gồm:\nRAG(x) = Generator(x,Retriever(x)) (1)\nTrong đó:\n• x: Câu hỏi đầu vào\n• Retriever(x): Hàm truy xuất các tài liệu liên quan\n• Generator: Mô hình sinh câu trả lời\n2.2 Embedding và Vector Database\n2.2.1 Text Embedding\nText embedding là quá trình chuyển đổi văn bản thành vector số có số chiều cố định:\nE : Text → Rd (2)\nTrong đó d là số chiều của vector (thường là 384, 512, 768, v.v.)\nĐặc điểm quan trọng:\n• Văn bản có nghĩa tương tự sẽ có vector gần nhau trong không gian d chiều\n• Khoảng cách được tính bằng cosine similarity hoặc Euclidean distance\n2.2.2 FAISS (Facebook AI Similarity Search)",
+            "query": "RAG là gì?",
+            "score": 0.5086333751678467,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation: Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 5,
+            "chunk_id": 10,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thàn",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+            "query": "RAG là gì?",
+            "score": 0.44703614711761475,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation: Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 4,
+            "chunk_id": 9,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN 25\n9.1 Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25\n3",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN 25\n9.1 Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25\n3",
+            "query": "RAG là gì?",
+            "score": 0.44654354453086853,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation: Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 49,
+          "rerank_ms": 0,
+          "total_ms": 49,
+          "reranking_used": false
+        },
+        "self_rag": null
+      },
+      {
+        "role": "user",
+        "content": "RAG là gì?"
+      },
+      {
+        "role": "assistant",
+        "content": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation (Sinh): Sử dụng mô hình LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 7,
+            "chunk_id": 13,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết hợp hai thành phần:\n1. Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n2. Generation (Sinh): Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã\ntruy xuất\n2.1.2 Kiến trúc RAG\nKiến trúc RAG cơ bản bao gồm:\nRAG(x) = Generator(x,Retriever(x)) (1)\nTrong đó:\n• x: Câu hỏi đầu vào\n• Retriever(x): Hàm truy xuất các tài liệu liên quan\n• Generator: Mô hình sinh câu trả lời\n2.2 Embedding và Vector Database\n2.2.1 Text Embedding\nText embedding là quá trình chuyển đổi văn bản thành vector số có số chiều cố định:\nE : Text → Rd (2)\nTrong đó d là số chiều của vector (thường là 384, 512, 768, v.v.)\nĐặc điểm quan trọng:\n• Văn bản có nghĩa tương tự sẽ có vector gần nhau trong không gian d chiều\n• Khoảng cách được tính bằng cosine similarity hoặc Euclidean distance\n2.2.2 FAISS (Facebook AI Similarity Search)",
+            "query": "RAG là gì?",
+            "score": 0.11123903793566955,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation (Sinh): Sử dụng mô hình LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 4,
+            "chunk_id": 9,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN 25\n9.1 Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25\n3",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN 25\n9.1 Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25\n3",
+            "query": "RAG là gì?",
+            "score": 0.010442814297848784,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation (Sinh): Sử dụng mô hình LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 5,
+            "chunk_id": 10,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thàn",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+            "query": "RAG là gì?",
+            "score": 0.0015331520247378093,
+            "answer": "- RAG (Retrieval-Augmented Generation) là một kỹ thuật trong NLP kết hợp hai thành phần chính:\n  - Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu.\n  - Generation (Sinh): Sử dụng mô hình LLM để sinh ra câu trả lời dựa trên thông tin đã truy xuất.[1]"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 50,
+          "rerank_ms": 159,
+          "total_ms": 209,
+          "reranking_used": true
+        },
+        "self_rag": null
+      },
+      {
+        "role": "user",
+        "content": "So sánh Bi-Encoder và Cross-Encoder"
+      },
+      {
+        "role": "assistant",
+        "content": "- Bi-Encoder sử dụng hai mạng neuron độc lập để tạo vector cho câu hỏi và văn bản, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder được dùng để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder thông qua một mô hình encoder đơn.[1]",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 24,
+            "chunk_id": 41,
+            "preview": "Yêu cầu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tố",
+            "full_content": "Yêu cầu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency\n23",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 0.4635864496231079,
+            "answer": "- Bi-Encoder sử dụng hai mạng neuron độc lập để tạo vector cho câu hỏi và văn bản, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder được dùng để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder thông qua một mô hình encoder đơn.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 14,
+            "chunk_id": 26,
+            "preview": "12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15\n4.4 Cấu hình chi tiết\n4.4.1 Embedding Configuration\n1 embedder = H",
+            "full_content": "12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15\n4.4 Cấu hình chi tiết\n4.4.1 Embedding Configuration\n1 embedder = HuggingFaceEmbeddings(\n2 model_name=\"sentence-transformers/paraphrase-multilingual-mpnet-base\n-v2\",\n3 model_kwargs={’device’: ’cpu’}, # Or ’cuda’ if GPU available\n4 encode_kwargs={’normalize_embeddings’: True}\n5 )\n13",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 0.4389730989933014,
+            "answer": "- Bi-Encoder sử dụng hai mạng neuron độc lập để tạo vector cho câu hỏi và văn bản, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder được dùng để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder thông qua một mô hình encoder đơn.[1]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 8,
+            "chunk_id": 16,
+            "preview": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối",
+            "full_content": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối các thành phần lại với nhau\n7",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 0.4385833442211151,
+            "answer": "- Bi-Encoder sử dụng hai mạng neuron độc lập để tạo vector cho câu hỏi và văn bản, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder được dùng để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder thông qua một mô hình encoder đơn.[1]"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 79,
+          "rerank_ms": 0,
+          "total_ms": 79,
+          "reranking_used": false
+        },
+        "self_rag": null
+      },
+      {
+        "role": "user",
+        "content": "So sánh Bi-Encoder và Cross-Encoder"
+      },
+      {
+        "role": "assistant",
+        "content": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm các thông tin liên quan.\n  - Không sử dụng cross-encoder để đánh giá lại relevancy.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách sử dụng model cross-encoder sau bước retrieval, giúp cải thiện độ chính xác.\n  - Có thêm bước re-ranking để tối ưu hóa latency.[1]\n\nTrích dẫn từ tài liệu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency[2]",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 24,
+            "chunk_id": 41,
+            "preview": "Yêu cầu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tố",
+            "full_content": "Yêu cầu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency\n23",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 0.9974368602558479,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm các thông tin liên quan.\n  - Không sử dụng cross-encoder để đánh giá lại relevancy.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách sử dụng model cross-encoder sau bước retrieval, giúp cải thiện độ chính xác.\n  - Có thêm bước re-ranking để tối ưu hóa latency.[1]\n\nTrích dẫn từ tài liệu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency[2]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 8,
+            "chunk_id": 16,
+            "preview": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối",
+            "full_content": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối các thành phần lại với nhau\n7",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 1.4827985031739026e-05,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm các thông tin liên quan.\n  - Không sử dụng cross-encoder để đánh giá lại relevancy.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách sử dụng model cross-encoder sau bước retrieval, giúp cải thiện độ chính xác.\n  - Có thêm bước re-ranking để tối ưu hóa latency.[1]\n\nTrích dẫn từ tài liệu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency[2]"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 14,
+            "chunk_id": 26,
+            "preview": "12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15\n4.4 Cấu hình chi tiết\n4.4.1 Embedding Configuration\n1 embedder = H",
+            "full_content": "12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15\n4.4 Cấu hình chi tiết\n4.4.1 Embedding Configuration\n1 embedder = HuggingFaceEmbeddings(\n2 model_name=\"sentence-transformers/paraphrase-multilingual-mpnet-base\n-v2\",\n3 model_kwargs={’device’: ’cpu’}, # Or ’cuda’ if GPU available\n4 encode_kwargs={’normalize_embeddings’: True}\n5 )\n13",
+            "query": "So sánh Bi-Encoder và Cross-Encoder",
+            "score": 1.1895252598225823e-05,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm các thông tin liên quan.\n  - Không sử dụng cross-encoder để đánh giá lại relevancy.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách sử dụng model cross-encoder sau bước retrieval, giúp cải thiện độ chính xác.\n  - Có thêm bước re-ranking để tối ưu hóa latency.[1]\n\nTrích dẫn từ tài liệu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency[2]"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 54,
+          "rerank_ms": 89,
+          "total_ms": 143,
+          "reranking_used": true
+        },
+        "self_rag": null
+      },
+      {
+        "role": "user",
+        "content": "nó hoạt động thế nào?"
+      },
+      {
+        "role": "assistant",
+        "content": "- Bi-Encoder tạo ra vector cho câu hỏi và đoạn văn bằng hai mạng neuron riêng biệt, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder sử dụng một mô hình encoder đơn để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder.\n\nTrích dẫn:\n- Bi-Encoder: \"Embedding Configuration\" trong tài liệu [2].\n- Cross-Encoder: \"Cấu trúc thư mục\" trong tài liệu [1].",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 4,
+            "preview": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.3 Cấu trúc thư mục . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4 Cấu hình chi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.1 Embedding Configuration . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.2 Retriever Configuration . . . . . . . . . . . . . . . . . . . . . . . . 14\n4.4.3 LLM Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n1",
+            "query": "Cách thức hoạt động của hệ thống/phiếuSexy?",
+            "score": 0.4870646893978119,
+            "answer": "- Bi-Encoder tạo ra vector cho câu hỏi và đoạn văn bằng hai mạng neuron riêng biệt, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder sử dụng một mô hình encoder đơn để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder.\n\nTrích dẫn:\n- Bi-Encoder: \"Embedding Configuration\" trong tài liệu [2].\n- Cross-Encoder: \"Cấu trúc thư mục\" trong tài liệu [1]."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 3,
+            "preview": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.5 LLM Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.4 Prompt Engineering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n4 TRIỂN KHAI 12\n4.1 Công nghệ sử dụng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.1 Frontend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.2 Backend & AI . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.3 Document Processing . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.4 Python Libraries . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2 Cài đặt môi trường . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12",
+            "query": "Cách thức hoạt động của hệ thống/phiếuSexy?",
+            "score": 0.43787020444869995,
+            "answer": "- Bi-Encoder tạo ra vector cho câu hỏi và đoạn văn bằng hai mạng neuron riêng biệt, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder sử dụng một mô hình encoder đơn để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder.\n\nTrích dẫn:\n- Bi-Encoder: \"Embedding Configuration\" trong tài liệu [2].\n- Cross-Encoder: \"Cấu trúc thư mục\" trong tài liệu [1]."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 1,
+            "preview": "Mục lục\nLỜI MỞ ĐẦU 4\n1 GIỚI THIỆU 5\n1.1 Bối cảnh và động lực . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n1.2 Mục tiêu dự án . . . .",
+            "full_content": "Mục lục\nLỜI MỞ ĐẦU 4\n1 GIỚI THIỆU 5\n1.1 Bối cảnh và động lực . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n1.2 Mục tiêu dự án . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n1.3 Phạm vi dự án . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n2 CƠ SỞ LÝ THUYẾT 6\n2.1 RAG (Retrieval-Augmented Generation) . . . . . . . . . . . . . . . . . . . 6\n2.1.1 Khái niệm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.1.2 Kiến trúc RAG . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2 Embedding và Vector Database . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2.1 Text Embedding . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2.2 FAISS (Facebook AI Similarity Search) . . . . . . . . . . . . . . . . 6\n2.3 Large Language Models (LLMs) . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.3.1 Qwen2.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7",
+            "query": "Cách thức hoạt động của hệ thống/phiếuSexy?",
+            "score": 0.4331284761428833,
+            "answer": "- Bi-Encoder tạo ra vector cho câu hỏi và đoạn văn bằng hai mạng neuron riêng biệt, sau đó so sánh vector này để đánh giá độ liên quan.\n- Cross-Encoder sử dụng một mô hình encoder đơn để đánh giá lại sự liên quan giữa câu hỏi và đoạn văn bản đã được truy xuất từ Bi-Encoder.\n\nTrích dẫn:\n- Bi-Encoder: \"Embedding Configuration\" trong tài liệu [2].\n- Cross-Encoder: \"Cấu trúc thư mục\" trong tài liệu [1]."
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 47,
+          "rerank_ms": 0,
+          "total_ms": 47,
+          "reranking_used": false
+        },
+        "self_rag": {
+          "original_query": "nó hoạt động thế nào?",
+          "rewritten_query": "Cách thức hoạt động của hệ thống/phiếuSexy?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "NOT_SUPPORTED",
+            "label_vn": "Không tìm thấy trong tài liệu",
+            "icon": "🔴",
+            "score": 0.2
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "Nó hoạt động thế nào ?"
+      },
+      {
+        "role": "assistant",
+        "content": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm thông tin liên quan.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách so sánh hai véc-tơ để xác định độ tương đồng giữa câu hỏi và đoạn văn bản.\n\nBi-Encoder không sử dụng cross-encoder để đánh giá relevancy, trong khi Cross-Encoder sử dụng kỹ thuật này để tăng cường tính chính xác của kết quả tìm kiếm [1].\n\n\n- Bi-Encoder hoạt động bằng cách chuyển đổi cả câu hỏi và các đoạn văn bản thành véc-tơ thông qua embedding. Vector stores sau đó được sử dụng để lưu trữ và tìm kiếm các véc-tơ tương ứng với câu hỏi, giúp nhanh chóng xác định các đoạn văn bản liên quan [1].\n\n\n- Cross-Encoder tiếp tục quá trình này nhưng thêm bước đánh giá relevancy bằng cách so sánh hai véc-tơ (câu hỏi và đoạn văn bản) để xác định độ tương đồng. Điều này giúp cải thiện chất lượng của kết quả tìm kiếm, đặc biệt là trong các trường hợp khi câu hỏi không hoàn toàn chính xác [1].\n\n\nTrong hệ thống RAG mà bạn mô tả:\n- Tài liệu được tải lên và chuyển đổi thành véc-tơ.\n- Vector stores lưu trữ các véc-tơ này để hỗ trợ quá trình tìm kiếm.\n- Cross-Encoder có thể được sử dụng để đánh giá relevancy của kết quả, giúp tăng cường độ chính xác của hệ thống [1].\n\n[1] Bài tập lớn OSSD 2026 RAG System với LLMs",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 4,
+            "preview": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.3 Cấu trúc thư mục . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4 Cấu hình chi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.1 Embedding Configuration . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.2 Retriever Configuration . . . . . . . . . . . . . . . . . . . . . . . . 14\n4.4.3 LLM Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n1",
+            "query": "Câu hỏi viết lại: Chi tiết quá trình hoạt động của hệ thống/nhỏ/máy móc/etc. như thế nào?",
+            "score": 0.47256094217300415,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm thông tin liên quan.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách so sánh hai véc-tơ để xác định độ tương đồng giữa câu hỏi và đoạn văn bản.\n\nBi-Encoder không sử dụng cross-encoder để đánh giá relevancy, trong khi Cross-Encoder sử dụng kỹ thuật này để tăng cường tính chính xác của kết quả tìm kiếm [1].\n\n\n- Bi-Encoder hoạt động bằng cách chuyển đổi cả câu hỏi và các đoạn văn bản thành véc-tơ thông qua embedding. Vector stores sau đó được sử dụng để lưu trữ và tìm kiếm các véc-tơ tương ứng với câu hỏi, giúp nhanh chóng xác định các đoạn văn bản liên quan [1].\n\n\n- Cross-Encoder tiếp tục quá trình này nhưng thêm bước đánh giá relevancy bằng cách so sánh hai véc-tơ (câu hỏi và đoạn văn bản) để xác định độ tương đồng. Điều này giúp cải thiện chất lượng của kết quả tìm kiếm, đặc biệt là trong các trường hợp khi câu hỏi không hoàn toàn chính xác [1].\n\n\nTrong hệ thống RAG mà bạn mô tả:\n- Tài liệu được tải lên và chuyển đổi thành véc-tơ.\n- Vector stores lưu trữ các véc-tơ này để hỗ trợ quá trình tìm kiếm.\n- Cross-Encoder có thể được sử dụng để đánh giá relevancy của kết quả, giúp tăng cường độ chính xác của hệ thống [1].\n\n[1] Bài tập lớn OSSD 2026 RAG System với LLMs"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 23,
+            "chunk_id": 38,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n8 YÊU CẦU PHÁT TRIỂN PROJECT\n8.1 Giới thiệu\nPhần này đưa ra các yêu cầu phát triển thêm cho project, được sắ",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n8 YÊU CẦU PHÁT TRIỂN PROJECT\n8.1 Giới thiệu\nPhần này đưa ra các yêu cầu phát triển thêm cho project, được sắp xếp theo mức độ khó\ntăng dần. Sinh viên cần hoàn thành các yêu cầu để nâng cao kỹ năng và mở rộng tính\nnăng của hệ thống RAG.\n8.2 Các yêu cầu phát triển\n8.2.1 Câu hỏi 1: Thêm hỗ trợ file DOCX\nYêu cầu:\n• Mở rộng hệ thống để hỗ trợ tải lên và xử lý file DOCX\n• Sử dụng thư viện phù hợp (python-docx hoặc DocxLoader từ LangChain)\n• Đảm bảo text extraction chính xác\n8.2.2 Câu hỏi 2: Lưu trữ lịch sử hội thoại\nYêu cầu:\n• Lưu trữ các câu hỏi và câu trả lời trong session\n• Hiển thị lịch sử chat trong sidebar\n• Cho phép người dùng xem lại các câu hỏi đã hỏi\n8.2.3 Câu hỏi 3: Thêm nút xóa lịch sử\nYêu cầu:\n• Thêm button \"Clear History\"để xóa toàn bộ lịch sử chat\n• Thêm button \"Clear Vector Store\"để xóa tài liệu đã upload\n• Có confirmation dialog trước khi xóa\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy\nYêu cầu:",
+            "query": "Câu hỏi viết lại: Chi tiết quá trình hoạt động của hệ thống/nhỏ/máy móc/etc. như thế nào?",
+            "score": 0.4493632912635803,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm thông tin liên quan.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách so sánh hai véc-tơ để xác định độ tương đồng giữa câu hỏi và đoạn văn bản.\n\nBi-Encoder không sử dụng cross-encoder để đánh giá relevancy, trong khi Cross-Encoder sử dụng kỹ thuật này để tăng cường tính chính xác của kết quả tìm kiếm [1].\n\n\n- Bi-Encoder hoạt động bằng cách chuyển đổi cả câu hỏi và các đoạn văn bản thành véc-tơ thông qua embedding. Vector stores sau đó được sử dụng để lưu trữ và tìm kiếm các véc-tơ tương ứng với câu hỏi, giúp nhanh chóng xác định các đoạn văn bản liên quan [1].\n\n\n- Cross-Encoder tiếp tục quá trình này nhưng thêm bước đánh giá relevancy bằng cách so sánh hai véc-tơ (câu hỏi và đoạn văn bản) để xác định độ tương đồng. Điều này giúp cải thiện chất lượng của kết quả tìm kiếm, đặc biệt là trong các trường hợp khi câu hỏi không hoàn toàn chính xác [1].\n\n\nTrong hệ thống RAG mà bạn mô tả:\n- Tài liệu được tải lên và chuyển đổi thành véc-tơ.\n- Vector stores lưu trữ các véc-tơ này để hỗ trợ quá trình tìm kiếm.\n- Cross-Encoder có thể được sử dụng để đánh giá relevancy của kết quả, giúp tăng cường độ chính xác của hệ thống [1].\n\n[1] Bài tập lớn OSSD 2026 RAG System với LLMs"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 5,
+            "chunk_id": 10,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thàn",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+            "query": "Câu hỏi viết lại: Chi tiết quá trình hoạt động của hệ thống/nhỏ/máy móc/etc. như thế nào?",
+            "score": 0.44773027300834656,
+            "answer": "- Bi-Encoder:\n  - Chuyển đổi văn bản thành véc-tơ.\n  - Sử dụng vector stores để lưu trữ và tìm kiếm thông tin liên quan.\n\n- Cross-Encoder:\n  - Cũng chuyển đổi văn bản thành véc-tơ như Bi-Encoder.\n  - Đánh giá lại relevancy bằng cách so sánh hai véc-tơ để xác định độ tương đồng giữa câu hỏi và đoạn văn bản.\n\nBi-Encoder không sử dụng cross-encoder để đánh giá relevancy, trong khi Cross-Encoder sử dụng kỹ thuật này để tăng cường tính chính xác của kết quả tìm kiếm [1].\n\n\n- Bi-Encoder hoạt động bằng cách chuyển đổi cả câu hỏi và các đoạn văn bản thành véc-tơ thông qua embedding. Vector stores sau đó được sử dụng để lưu trữ và tìm kiếm các véc-tơ tương ứng với câu hỏi, giúp nhanh chóng xác định các đoạn văn bản liên quan [1].\n\n\n- Cross-Encoder tiếp tục quá trình này nhưng thêm bước đánh giá relevancy bằng cách so sánh hai véc-tơ (câu hỏi và đoạn văn bản) để xác định độ tương đồng. Điều này giúp cải thiện chất lượng của kết quả tìm kiếm, đặc biệt là trong các trường hợp khi câu hỏi không hoàn toàn chính xác [1].\n\n\nTrong hệ thống RAG mà bạn mô tả:\n- Tài liệu được tải lên và chuyển đổi thành véc-tơ.\n- Vector stores lưu trữ các véc-tơ này để hỗ trợ quá trình tìm kiếm.\n- Cross-Encoder có thể được sử dụng để đánh giá relevancy của kết quả, giúp tăng cường độ chính xác của hệ thống [1].\n\n[1] Bài tập lớn OSSD 2026 RAG System với LLMs"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 58,
+          "rerank_ms": 0,
+          "total_ms": 58,
+          "reranking_used": false
+        },
+        "self_rag": {
+          "original_query": "Nó hoạt động thế nào ?",
+          "rewritten_query": "Câu hỏi viết lại: Chi tiết quá trình hoạt động của hệ thống/nhỏ/máy móc/etc. như thế nào?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "NOT_SUPPORTED",
+            "label_vn": "Không tìm thấy trong tài liệu",
+            "icon": "🔴",
+            "score": 0.2
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "FAISS là gì?"
+      },
+      {
+        "role": "assistant",
+        "content": "- FAISS là thư viện hỗ trợ việc tìm kiếm nhanh và hiệu quả trên hàng triệu vector.\n- Nó hỗ trợ tăng tốc bằng GPU và tối ưu hóa bộ nhớ.\n\nTrích nguồn:\n[2] 2.2.2 FAISS (Facebook AI Similarity Search)",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 5,
+            "chunk_id": 10,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thàn",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+            "query": "FAISS là gì? Chi tiết về công nghệ xử lý dữ liệu vectơ này được sử dụng như thế nào?",
+            "score": 0.5143817663192749,
+            "answer": "- FAISS là thư viện hỗ trợ việc tìm kiếm nhanh và hiệu quả trên hàng triệu vector.\n- Nó hỗ trợ tăng tốc bằng GPU và tối ưu hóa bộ nhớ.\n\nTrích nguồn:\n[2] 2.2.2 FAISS (Facebook AI Similarity Search)"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 7,
+            "chunk_id": 14,
+            "preview": "2.2.2 FAISS (Facebook AI Similarity Search)\nFAISS là thư viện hiệu quả cho similarity search và clustering của dense vectors:\nƯu điểm:\n• Tìm kiếm nhan",
+            "full_content": "2.2.2 FAISS (Facebook AI Similarity Search)\nFAISS là thư viện hiệu quả cho similarity search và clustering của dense vectors:\nƯu điểm:\n• Tìm kiếm nhanh với hàng triệu vector\n• Hỗ trợ GPU acceleration\n• Memory-efficient indexing\n6",
+            "query": "FAISS là gì? Chi tiết về công nghệ xử lý dữ liệu vectơ này được sử dụng như thế nào?",
+            "score": 0.5045883655548096,
+            "answer": "- FAISS là thư viện hỗ trợ việc tìm kiếm nhanh và hiệu quả trên hàng triệu vector.\n- Nó hỗ trợ tăng tốc bằng GPU và tối ưu hóa bộ nhớ.\n\nTrích nguồn:\n[2] 2.2.2 FAISS (Facebook AI Similarity Search)"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 8,
+            "chunk_id": 16,
+            "preview": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối",
+            "full_content": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối các thành phần lại với nhau\n7",
+            "query": "FAISS là gì? Chi tiết về công nghệ xử lý dữ liệu vectơ này được sử dụng như thế nào?",
+            "score": 0.49123817682266235,
+            "answer": "- FAISS là thư viện hỗ trợ việc tìm kiếm nhanh và hiệu quả trên hàng triệu vector.\n- Nó hỗ trợ tăng tốc bằng GPU và tối ưu hóa bộ nhớ.\n\nTrích nguồn:\n[2] 2.2.2 FAISS (Facebook AI Similarity Search)"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 58,
+          "rerank_ms": 0,
+          "total_ms": 58,
+          "reranking_used": false
+        },
+        "self_rag": {
+          "original_query": "FAISS là gì?",
+          "rewritten_query": "FAISS là gì? Chi tiết về công nghệ xử lý dữ liệu vectơ này được sử dụng như thế nào?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "SUPPORTED",
+            "label_vn": "Có cơ sở từ tài liệu",
+            "icon": "🟢",
+            "score": 0.9
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "Giải phương trình vi phân bậc 2"
+      },
+      {
+        "role": "assistant",
+        "content": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Bạn có thể cần sử dụng các công cụ và kỹ thuật toán học chuyên biệt để giải quyết vấn đề này, ngoài phạm vi hiểu biết hiện tại của hệ thống về công nghệ AI và xử lý văn bản.\n\nNếu bạn muốn biết thêm thông tin chi tiết về cách sử dụng FAISS hoặc các kỹ thuật liên quan đến xử lý văn bản, vui lòng cung cấp thêm ngữ cảnh hoặc câu hỏi cụ thể hơn.",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 3,
+            "preview": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.5 LLM Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.4 Prompt Engineering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n4 TRIỂN KHAI 12\n4.1 Công nghệ sử dụng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.1 Frontend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.2 Backend & AI . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.3 Document Processing . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.4 Python Libraries . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2 Cài đặt môi trường . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12",
+            "query": "Giải một phương trình vi phân bậc 2 từ tài liệu nào?",
+            "score": 0.4717051386833191,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Bạn có thể cần sử dụng các công cụ và kỹ thuật toán học chuyên biệt để giải quyết vấn đề này, ngoài phạm vi hiểu biết hiện tại của hệ thống về công nghệ AI và xử lý văn bản.\n\nNếu bạn muốn biết thêm thông tin chi tiết về cách sử dụng FAISS hoặc các kỹ thuật liên quan đến xử lý văn bản, vui lòng cung cấp thêm ngữ cảnh hoặc câu hỏi cụ thể hơn."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 4,
+            "preview": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.3 Cấu trúc thư mục . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4 Cấu hình chi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.1 Embedding Configuration . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.2 Retriever Configuration . . . . . . . . . . . . . . . . . . . . . . . . 14\n4.4.3 LLM Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n1",
+            "query": "Giải một phương trình vi phân bậc 2 từ tài liệu nào?",
+            "score": 0.46592164039611816,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Bạn có thể cần sử dụng các công cụ và kỹ thuật toán học chuyên biệt để giải quyết vấn đề này, ngoài phạm vi hiểu biết hiện tại của hệ thống về công nghệ AI và xử lý văn bản.\n\nNếu bạn muốn biết thêm thông tin chi tiết về cách sử dụng FAISS hoặc các kỹ thuật liên quan đến xử lý văn bản, vui lòng cung cấp thêm ngữ cảnh hoặc câu hỏi cụ thể hơn."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 10,
+            "chunk_id": 19,
+            "preview": "2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk\n5 chunk_overlap=100 # Overlap between chunks\n6 )\n7 docum",
+            "full_content": "2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk\n5 chunk_overlap=100 # Overlap between chunks\n6 )\n7 documents = text_splitter.split_documents(docs)\nListing 2: Text Splitting\nTham số quan trọng:\n• chunk_size=1000: Mỗi chunk tối đa 1000 ký tự\n• chunk_overlap=100: 100 ký tự trùng lặp giữa các chunks liên tiếp\n• Overlap giúp đảm bảo ngữ cảnh không bị mất ở ranh giới\n9",
+            "query": "Giải một phương trình vi phân bậc 2 từ tài liệu nào?",
+            "score": 0.45764872431755066,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Bạn có thể cần sử dụng các công cụ và kỹ thuật toán học chuyên biệt để giải quyết vấn đề này, ngoài phạm vi hiểu biết hiện tại của hệ thống về công nghệ AI và xử lý văn bản.\n\nNếu bạn muốn biết thêm thông tin chi tiết về cách sử dụng FAISS hoặc các kỹ thuật liên quan đến xử lý văn bản, vui lòng cung cấp thêm ngữ cảnh hoặc câu hỏi cụ thể hơn."
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 48,
+          "rerank_ms": 0,
+          "total_ms": 48,
+          "reranking_used": false
+        },
+        "self_rag": {
+          "original_query": "Giải phương trình vi phân bậc 2",
+          "rewritten_query": "Giải một phương trình vi phân bậc 2 từ tài liệu nào?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "NOT_SUPPORTED",
+            "label_vn": "Không tìm thấy trong tài liệu",
+            "icon": "🔴",
+            "score": 0.2
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "chunk overlap bao nhiêu là tốt nhất?"
+      },
+      {
+        "role": "assistant",
+        "content": "- Chunk overlap không có giá trị cố định là tốt nhất, vì nó phụ thuộc vào nội dung cụ thể và yêu cầu của nhiệm vụ.\n- Tuy nhiên, thông qua thử nghiệm, bạn có thể xác định độ chính xác cao nhất bằng cách thay đổi chunk_size (500, 1000, 1500, 2000) và chunk_overlap (50, 100, 200).\n\nTrích nguồn:\n[1] 8.2.4 Câu hỏi 4: Cải thiện chunk strategy",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 23,
+            "chunk_id": 39,
+            "preview": "• Có confirmation dialog trước khi xóa\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy\nYêu cầu:\n• Thử nghiệm các giá trị chunk_size khác nhau (500, 1000, 15",
+            "full_content": "• Có confirmation dialog trước khi xóa\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy\nYêu cầu:\n• Thử nghiệm các giá trị chunk_size khác nhau (500, 1000, 1500, 2000)\n• Thử nghiệm chunk_overlap khác nhau (50, 100, 200)\n• So sánh và báo cáo kết quả về độ chính xác\n• Cho phép người dùng tùy chỉnh chunk parameters\n22",
+            "query": "Cwert độlap tối ưu là bao nhiêu cho phương pháp chia thành phần (chunking)?",
+            "score": 0.4889984428882599,
+            "answer": "- Chunk overlap không có giá trị cố định là tốt nhất, vì nó phụ thuộc vào nội dung cụ thể và yêu cầu của nhiệm vụ.\n- Tuy nhiên, thông qua thử nghiệm, bạn có thể xác định độ chính xác cao nhất bằng cách thay đổi chunk_size (500, 1000, 1500, 2000) và chunk_overlap (50, 100, 200).\n\nTrích nguồn:\n[1] 8.2.4 Câu hỏi 4: Cải thiện chunk strategy"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 10,
+            "chunk_id": 19,
+            "preview": "2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk\n5 chunk_overlap=100 # Overlap between chunks\n6 )\n7 docum",
+            "full_content": "2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk\n5 chunk_overlap=100 # Overlap between chunks\n6 )\n7 documents = text_splitter.split_documents(docs)\nListing 2: Text Splitting\nTham số quan trọng:\n• chunk_size=1000: Mỗi chunk tối đa 1000 ký tự\n• chunk_overlap=100: 100 ký tự trùng lặp giữa các chunks liên tiếp\n• Overlap giúp đảm bảo ngữ cảnh không bị mất ở ranh giới\n9",
+            "query": "Cwert độlap tối ưu là bao nhiêu cho phương pháp chia thành phần (chunking)?",
+            "score": 0.48659998178482056,
+            "answer": "- Chunk overlap không có giá trị cố định là tốt nhất, vì nó phụ thuộc vào nội dung cụ thể và yêu cầu của nhiệm vụ.\n- Tuy nhiên, thông qua thử nghiệm, bạn có thể xác định độ chính xác cao nhất bằng cách thay đổi chunk_size (500, 1000, 1500, 2000) và chunk_overlap (50, 100, 200).\n\nTrích nguồn:\n[1] 8.2.4 Câu hỏi 4: Cải thiện chunk strategy"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 18,
+            "chunk_id": 30,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n6 KẾT QUẢ VÀ ĐÁNH GIÁ\n6.1 Kết quả đạt được\n6.1.1 Chức năng hoàn thành\n✓ Upload và xử lý PDF documents\n✓ Text",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n6 KẾT QUẢ VÀ ĐÁNH GIÁ\n6.1 Kết quả đạt được\n6.1.1 Chức năng hoàn thành\n✓ Upload và xử lý PDF documents\n✓ Text extraction và chunking\n✓ Vector embedding và indexing\n✓ Similarity search với FAISS\n✓ Integration với Qwen2.5:7b model\n✓ Question answering interface\n✓ User-friendly web interface\n✓ Error handling và validation\n6.1.2 Performance Metrics\nProcessing Time:\n• PDF Loading: 2-5 giây (phụ thuộc file size)\n• Embedding Generation: 5-10 giây cho 100 chunks\n• Query Processing: 1-3 giây\n• Answer Generation: 3-8 giây\nAccuracy:\n• Relevant document retrieval: 85-90%\n• Answer relevance: 80-85%\n• Factual accuracy: 75-80%\n6.2 Testing\n6.2.1 Test Cases\nTest Case 1: Simple Factual Question\n• Document: Technical manual\n• Question: \"What is the installation procedure?\"\n• Expected: Step-by-step instructions\n• Result: ✓ Passed\n17",
+            "query": "Cwert độlap tối ưu là bao nhiêu cho phương pháp chia thành phần (chunking)?",
+            "score": 0.4674942195415497,
+            "answer": "- Chunk overlap không có giá trị cố định là tốt nhất, vì nó phụ thuộc vào nội dung cụ thể và yêu cầu của nhiệm vụ.\n- Tuy nhiên, thông qua thử nghiệm, bạn có thể xác định độ chính xác cao nhất bằng cách thay đổi chunk_size (500, 1000, 1500, 2000) và chunk_overlap (50, 100, 200).\n\nTrích nguồn:\n[1] 8.2.4 Câu hỏi 4: Cải thiện chunk strategy"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 55,
+          "rerank_ms": 0,
+          "total_ms": 55,
+          "reranking_used": false
+        },
+        "self_rag": {
+          "original_query": "chunk overlap bao nhiêu là tốt nhất?",
+          "rewritten_query": "Cwert độlap tối ưu là bao nhiêu cho phương pháp chia thành phần (chunking)?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "PARTIALLY_SUPPORTED",
+            "label_vn": "Một phần từ tài liệu",
+            "icon": "🟡",
+            "score": 0.55
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "Giải phương trình vi phân bậc 2"
+      },
+      {
+        "role": "assistant",
+        "content": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Phương pháp giải thường đòi hỏi kiến thức chuyên sâu về toán học và có thể bao gồm các bước như:\n\n- Xác định điều kiện ban đầu hoặc biên nếu cần.\n- Áp dụng công thức đặc biệt hoặc kỹ thuật biến đổi thích hợp.\n- Giải hệ phương trình nếu cần.\n\nBạn có thể tham khảo sách giáo trình toán cao cấp hoặc tài liệu chuyên ngành về phương trình vi phân để hiểu rõ hơn.",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 4,
+            "preview": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.3 Cấu trúc thư mục . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4 Cấu hình chi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.1 Embedding Configuration . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.2 Retriever Configuration . . . . . . . . . . . . . . . . . . . . . . . . 14\n4.4.3 LLM Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n1",
+            "query": "Giải phương trình vi phân bậc hai bằng cách nào?",
+            "score": 0.0003756496362596853,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Phương pháp giải thường đòi hỏi kiến thức chuyên sâu về toán học và có thể bao gồm các bước như:\n\n- Xác định điều kiện ban đầu hoặc biên nếu cần.\n- Áp dụng công thức đặc biệt hoặc kỹ thuật biến đổi thích hợp.\n- Giải hệ phương trình nếu cần.\n\nBạn có thể tham khảo sách giáo trình toán cao cấp hoặc tài liệu chuyên ngành về phương trình vi phân để hiểu rõ hơn."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 2,
+            "preview": "2.3.1 Qwen2.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.3.2 Ollama . . . . . . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "2.3.1 Qwen2.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.3.2 Ollama . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.4 LangChain Framework . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n3 THIẾT KẾ HỆ THỐNG 8\n3.1 Kiến trúc tổng quan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2 Data Flow (Luồng dữ liệu) . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2.1 Document Processing Flow . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2.2 Query Processing Flow . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3 Chi tiết các thành phần . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.1 Document Loader . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.2 Text Splitter . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10",
+            "query": "Giải phương trình vi phân bậc hai bằng cách nào?",
+            "score": 0.00018069646691955122,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Phương pháp giải thường đòi hỏi kiến thức chuyên sâu về toán học và có thể bao gồm các bước như:\n\n- Xác định điều kiện ban đầu hoặc biên nếu cần.\n- Áp dụng công thức đặc biệt hoặc kỹ thuật biến đổi thích hợp.\n- Giải hệ phương trình nếu cần.\n\nBạn có thể tham khảo sách giáo trình toán cao cấp hoặc tài liệu chuyên ngành về phương trình vi phân để hiểu rõ hơn."
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 2,
+            "chunk_id": 3,
+            "preview": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . .",
+            "full_content": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.5 LLM Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.4 Prompt Engineering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n4 TRIỂN KHAI 12\n4.1 Công nghệ sử dụng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.1 Frontend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.2 Backend & AI . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.3 Document Processing . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.4 Python Libraries . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2 Cài đặt môi trường . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12",
+            "query": "Giải phương trình vi phân bậc hai bằng cách nào?",
+            "score": 5.40293727816118e-05,
+            "answer": "Tài liệu cung cấp chưa đề cập đến việc giải phương trình vi phân bậc 2. Phương pháp giải thường đòi hỏi kiến thức chuyên sâu về toán học và có thể bao gồm các bước như:\n\n- Xác định điều kiện ban đầu hoặc biên nếu cần.\n- Áp dụng công thức đặc biệt hoặc kỹ thuật biến đổi thích hợp.\n- Giải hệ phương trình nếu cần.\n\nBạn có thể tham khảo sách giáo trình toán cao cấp hoặc tài liệu chuyên ngành về phương trình vi phân để hiểu rõ hơn."
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 43,
+          "rerank_ms": 184,
+          "total_ms": 227,
+          "reranking_used": true
+        },
+        "self_rag": {
+          "original_query": "Giải phương trình vi phân bậc 2",
+          "rewritten_query": "Giải phương trình vi phân bậc hai bằng cách nào?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "NOT_SUPPORTED",
+            "label_vn": "Không tìm thấy trong tài liệu",
+            "icon": "🔴",
+            "score": 0.2
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": "Embedding hoạt động như thế nào trong hệ thống RAG?"
+      },
+      {
+        "role": "assistant",
+        "content": "- Embedding chuyển đổi văn bản thành vector số có số chiều cố định.\n- Vector này cho phép文本转为固定维度的向量数。\n- 具体特点包括：\n  - 意义相似的文本在多维空间中会更接近。\n  - 使用余弦相似度或欧几里得距离计算向量之间的距离。[1]\n\n参考文献：\n[1] 财务大讲堂OSSD 2026 RAG系统与LLMs，第2.2节文本嵌入和向量数据库中的相关描述。",
+        "sources": [
+          {
+            "file": "project_report_final.pdf",
+            "page": 7,
+            "chunk_id": 13,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết hợp hai thành phần:\n1. Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n2. Generation (Sinh): Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã\ntruy xuất\n2.1.2 Kiến trúc RAG\nKiến trúc RAG cơ bản bao gồm:\nRAG(x) = Generator(x,Retriever(x)) (1)\nTrong đó:\n• x: Câu hỏi đầu vào\n• Retriever(x): Hàm truy xuất các tài liệu liên quan\n• Generator: Mô hình sinh câu trả lời\n2.2 Embedding và Vector Database\n2.2.1 Text Embedding\nText embedding là quá trình chuyển đổi văn bản thành vector số có số chiều cố định:\nE : Text → Rd (2)\nTrong đó d là số chiều của vector (thường là 384, 512, 768, v.v.)\nĐặc điểm quan trọng:\n• Văn bản có nghĩa tương tự sẽ có vector gần nhau trong không gian d chiều\n• Khoảng cách được tính bằng cosine similarity hoặc Euclidean distance\n2.2.2 FAISS (Facebook AI Similarity Search)",
+            "query": "Cách embedding được triển khai và vận hành trong hệ thống Retrieval-Augmented Generation (RAG)?",
+            "score": 0.9963550730336916,
+            "answer": "- Embedding chuyển đổi văn bản thành vector số có số chiều cố định.\n- Vector này cho phép文本转为固定维度的向量数。\n- 具体特点包括：\n  - 意义相似的文本在多维空间中会更接近。\n  - 使用余弦相似度或欧几里得距离计算向量之间的距离。[1]\n\n参考文献：\n[1] 财务大讲堂OSSD 2026 RAG系统与LLMs，第2.2节文本嵌入和向量数据库中的相关描述。"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 6,
+            "chunk_id": 11,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\n1 GIỚI THIỆU\n1.1 Bối cảnh và động lực\nVới khối lượng thông tin ngày càng tăng trong các tài liệu số, việc tì",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n1 GIỚI THIỆU\n1.1 Bối cảnh và động lực\nVới khối lượng thông tin ngày càng tăng trong các tài liệu số, việc tìm kiếm và trích xuất\nthông tin một cách hiệu quả đã trở thành thách thức lớn. Các phương pháp truyền thống\nnhư tìm kiếm từ khóa thường không đủ để hiểu ngữ cảnh và ý nghĩa sâu xa của câu hỏi.\nHệ thống RAG (Retrieval-Augmented Generation) kết hợp ưu điểm của:\n• Information Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n• Natural Language Generation: Sinh ra câu trả lời tự nhiên dựa trên thông tin\nđã tìm được\n1.2 Mục tiêu dự án\nDự án đặt ra các mục tiêu cụ thể sau:\n1. Xây dựng giao diện web thân thiện cho phép người dùng tải lên tài liệu PDF\n2. Tích hợp công nghệ embedding để chuyển đổi văn bản thành vector\n3. Triển khai vector database (FAISS) để lưu trữ và tìm kiếm hiệu quả\n4. Tích hợp mô hình ngôn ngữ lớn Qwen2.5:7b được tối ưu cho tiếng Việt\n5. Xây dựng pipeline RAG hoàn chỉnh từ document loading đến answer generation",
+            "query": "Cách embedding được triển khai và vận hành trong hệ thống Retrieval-Augmented Generation (RAG)?",
+            "score": 0.9889090173943725,
+            "answer": "- Embedding chuyển đổi văn bản thành vector số có số chiều cố định.\n- Vector này cho phép文本转为固定维度的向量数。\n- 具体特点包括：\n  - 意义相似的文本在多维空间中会更接近。\n  - 使用余弦相似度或欧几里得距离计算向量之间的距离。[1]\n\n参考文献：\n[1] 财务大讲堂OSSD 2026 RAG系统与LLMs，第2.2节文本嵌入和向量数据库中的相关描述。"
+          },
+          {
+            "file": "project_report_final.pdf",
+            "page": 5,
+            "chunk_id": 10,
+            "preview": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thàn",
+            "full_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+            "query": "Cách embedding được triển khai và vận hành trong hệ thống Retrieval-Augmented Generation (RAG)?",
+            "score": 0.9880746666360362,
+            "answer": "- Embedding chuyển đổi văn bản thành vector số có số chiều cố định.\n- Vector này cho phép文本转为固定维度的向量数。\n- 具体特点包括：\n  - 意义相似的文本在多维空间中会更接近。\n  - 使用余弦相似度或欧几里得距离计算向量之间的距离。[1]\n\n参考文献：\n[1] 财务大讲堂OSSD 2026 RAG系统与LLMs，第2.2节文本嵌入和向量数据库中的相关描述。"
+          }
+        ],
+        "latency": {
+          "retrieve_ms": 56,
+          "rerank_ms": 162,
+          "total_ms": 218,
+          "reranking_used": true
+        },
+        "self_rag": {
+          "original_query": "Embedding hoạt động như thế nào trong hệ thống RAG?",
+          "rewritten_query": "Cách embedding được triển khai và vận hành trong hệ thống Retrieval-Augmented Generation (RAG)?",
+          "was_rewritten": true,
+          "evaluation": {
+            "label": "NOT_SUPPORTED",
+            "label_vn": "Không tìm thấy trong tài liệu",
+            "icon": "🔴",
+            "score": 0.2
+          }
+        }
+      }
+    ],
+    "documents": {
+      "project_report_final.pdf": true
+    },
+    "all_chunks_data": [
+      {
+        "page_content": "TRƯỜNG ĐẠI HỌC SÀI GÒN\nKHOA CÔNG NGHỆ THÔNG TIN\nGENERATIVE AI\nVer 1.1\nBài tập lớn:\nSmartDoc AI - Intelligent Document Q&A System\nMôn học: Open source software development\nHọc kỳ: Spring 2026\nThời hạn: April 19, 2026\nTP. HỒ CHÍ MINH, NĂM 2026",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 0,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 0
+        }
+      },
+      {
+        "page_content": "Mục lục\nLỜI MỞ ĐẦU 4\n1 GIỚI THIỆU 5\n1.1 Bối cảnh và động lực . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n1.2 Mục tiêu dự án . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n1.3 Phạm vi dự án . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n2 CƠ SỞ LÝ THUYẾT 6\n2.1 RAG (Retrieval-Augmented Generation) . . . . . . . . . . . . . . . . . . . 6\n2.1.1 Khái niệm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.1.2 Kiến trúc RAG . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2 Embedding và Vector Database . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2.1 Text Embedding . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n2.2.2 FAISS (Facebook AI Similarity Search) . . . . . . . . . . . . . . . . 6\n2.3 Large Language Models (LLMs) . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.3.1 Qwen2.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 1,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 1
+        }
+      },
+      {
+        "page_content": "2.3.1 Qwen2.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.3.2 Ollama . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n2.4 LangChain Framework . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n3 THIẾT KẾ HỆ THỐNG 8\n3.1 Kiến trúc tổng quan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2 Data Flow (Luồng dữ liệu) . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2.1 Document Processing Flow . . . . . . . . . . . . . . . . . . . . . . . 8\n3.2.2 Query Processing Flow . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3 Chi tiết các thành phần . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.1 Document Loader . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.2 Text Splitter . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 1,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 2
+        }
+      },
+      {
+        "page_content": "3.3.3 Embedding Model . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.4 Vector Store . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.3.5 LLM Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3.4 Prompt Engineering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n4 TRIỂN KHAI 12\n4.1 Công nghệ sử dụng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.1 Frontend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.2 Backend & AI . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.3 Document Processing . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.1.4 Python Libraries . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2 Cài đặt môi trường . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 1,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 3
+        }
+      },
+      {
+        "page_content": "4.2.1 Yêu cầu hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n4.2.2 Các bước cài đặt . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.3 Cấu trúc thư mục . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4 Cấu hình chi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.1 Embedding Configuration . . . . . . . . . . . . . . . . . . . . . . . 13\n4.4.2 Retriever Configuration . . . . . . . . . . . . . . . . . . . . . . . . 14\n4.4.3 LLM Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n1",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 1,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 4
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n5 GIAO DIỆN NGƯỜI DÙNG 15\n5.1 Thiết kế UI/UX . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.1.1 Color Palette . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.1.2 Layout Structure . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.2 User Flow . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.3 Features . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16\n5.3.1 File Upload . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16\n5.3.2 Question Answering . . . . . . . . . . . . . . . . . . . . . . . . . . 16\n5.3.3 Error Handling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16\n6 KẾT QUẢ VÀ ĐÁNH GIÁ 17\n6.1 Kết quả đạt được . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17\n6.1.1 Chức năng hoàn thành . . . . . . . . . . . . . . . . . . . . . . . . . 17",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 2,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 5
+        }
+      },
+      {
+        "page_content": "6.1.1 Chức năng hoàn thành . . . . . . . . . . . . . . . . . . . . . . . . . 17\n6.1.2 Performance Metrics . . . . . . . . . . . . . . . . . . . . . . . . . . 17\n6.2 Testing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17\n6.2.1 Test Cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17\n6.3 Ưu điểm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18\n6.4 Hạn chế . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18\n6.5 So sánh với các giải pháp khác . . . . . . . . . . . . . . . . . . . . . . . . . 18\n7 HƯỚNG DẪN SỬ DỤNG 19\n7.1 Hướng dẫn cho người dùng cuối . . . . . . . . . . . . . . . . . . . . . . . . 19\n7.1.1 Khởi động ứng dụng . . . . . . . . . . . . . . . . . . . . . . . . . . 19\n7.1.2 Upload tài liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19\n7.1.3 Đặt câu hỏi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 2,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 6
+        }
+      },
+      {
+        "page_content": "7.1.3 Đặt câu hỏi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19\n7.1.4 Tips sử dụng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19\n7.2 Hướng dẫn cho developers . . . . . . . . . . . . . . . . . . . . . . . . . . . 20\n7.2.1 Customize embedding model . . . . . . . . . . . . . . . . . . . . . . 20\n7.2.2 Adjust chunk parameters . . . . . . . . . . . . . . . . . . . . . . . . 20\n7.2.3 Thay đổi LLM model . . . . . . . . . . . . . . . . . . . . . . . . . . 20\n7.2.4 Modify retrieval parameters . . . . . . . . . . . . . . . . . . . . . . 20\n7.2.5 Add logging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21\n8 YÊU CẦU PHÁT TRIỂN PROJECT 22\n8.1 Giới thiệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22\n8.2 Các yêu cầu phát triển . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22\n8.2.1 Câu hỏi 1: Thêm hỗ trợ file DOCX . . . . . . . . . . . . . . . . . . 22",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 2,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 7
+        }
+      },
+      {
+        "page_content": "8.2.1 Câu hỏi 1: Thêm hỗ trợ file DOCX . . . . . . . . . . . . . . . . . . 22\n8.2.2 Câu hỏi 2: Lưu trữ lịch sử hội thoại . . . . . . . . . . . . . . . . . 22\n8.2.3 Câu hỏi 3: Thêm nút xóa lịch sử . . . . . . . . . . . . . . . . . . . 22\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy . . . . . . . . . . . . . . . . . 22\n8.2.5 Câu hỏi 5: Thêm citation/source tracking . . . . . . . . . . . . . . 23\n8.2.6 Câu hỏi 6: Implement Conversational RAG . . . . . . . . . . . . . 23\n8.2.7 Câu hỏi 7: Thêm hybrid search . . . . . . . . . . . . . . . . . . . . 23\n8.2.8 Câu hỏi 8: Multi-document RAG với metadata filtering . . . . . . 23\n8.2.9 Câu hỏi 9: Implement Re-ranking với Cross-Encoder . . . . . . . . 23\n8.2.10 Câu hỏi 10: Advanced RAG với Self-RAG . . . . . . . . . . . . . . 24\n8.3 Hướng dẫn đánh giá . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24\n2",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 2,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 8
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN 25\n9.1 Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25\n3",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 3,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 9
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nLỜI MỞ ĐẦU\nTrong kỷ nguyên số hiện nay, việc xử lý và tìm kiếm thông tin từ các tài liệu điện tử đã\ntrở thành một nhu cầu thiết yếu. Với sự phát triển mạnh mẽ của Trí tuệ nhân tạo (AI) và\nXử lý ngôn ngữ tự nhiên (NLP), các hệ thống RAG (Retrieval-Augmented Generation)\nđã nổi lên như một giải pháp hiệu quả cho bài toán này.\nDự án này được thực hiện nhằm xây dựng một hệ thống RAG hoàn chỉnh, cho phép\nngười dùng tải lên tài liệu PDF và đặt câu hỏi về nội dung tài liệu. Hệ thống sử dụng\nmô hình Qwen2.5:7b thông qua Ollama, kết hợp với công nghệ embedding đa ngôn ngữ\nvà vector database để cung cấp câu trả lời chính xác cho cả tiếng Việt và tiếng Anh.\nBáo cáo này trình bày chi tiết về kiến trúc hệ thống, các công nghệ được sử dụng, quy\ntrình triển khai và kết quả đạt được.\n4",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 4,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 10
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n1 GIỚI THIỆU\n1.1 Bối cảnh và động lực\nVới khối lượng thông tin ngày càng tăng trong các tài liệu số, việc tìm kiếm và trích xuất\nthông tin một cách hiệu quả đã trở thành thách thức lớn. Các phương pháp truyền thống\nnhư tìm kiếm từ khóa thường không đủ để hiểu ngữ cảnh và ý nghĩa sâu xa của câu hỏi.\nHệ thống RAG (Retrieval-Augmented Generation) kết hợp ưu điểm của:\n• Information Retrieval: Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n• Natural Language Generation: Sinh ra câu trả lời tự nhiên dựa trên thông tin\nđã tìm được\n1.2 Mục tiêu dự án\nDự án đặt ra các mục tiêu cụ thể sau:\n1. Xây dựng giao diện web thân thiện cho phép người dùng tải lên tài liệu PDF\n2. Tích hợp công nghệ embedding để chuyển đổi văn bản thành vector\n3. Triển khai vector database (FAISS) để lưu trữ và tìm kiếm hiệu quả\n4. Tích hợp mô hình ngôn ngữ lớn Qwen2.5:7b được tối ưu cho tiếng Việt\n5. Xây dựng pipeline RAG hoàn chỉnh từ document loading đến answer generation",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 5,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 11
+        }
+      },
+      {
+        "page_content": "5. Xây dựng pipeline RAG hoàn chỉnh từ document loading đến answer generation\n6. Tối ưu hóa hiệu suất và độ chính xác của câu trả lời\n1.3 Phạm vi dự án\nDự án tập trung vào:\n• Xử lý tài liệu PDF đa ngôn ngữ\n• Hỗ trợ xuất sắc cho tiếng Việt và 50+ ngôn ngữ khác\n• Tự động phát hiện ngôn ngữ và trả lời phù hợp\n• Chạy local trên máy tính cá nhân\n• Sử dụng mô hình open-source và miễn phí\n5",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 5,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 12
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2 CƠ SỞ LÝ THUYẾT\n2.1 RAG (Retrieval-Augmented Generation)\n2.1.1 Khái niệm\nRAG là một kỹ thuật trong NLP kết hợp hai thành phần:\n1. Retrieval (Truy xuất): Tìm kiếm thông tin liên quan từ cơ sở dữ liệu\n2. Generation (Sinh): Sử dụng LLM để sinh ra câu trả lời dựa trên thông tin đã\ntruy xuất\n2.1.2 Kiến trúc RAG\nKiến trúc RAG cơ bản bao gồm:\nRAG(x) = Generator(x,Retriever(x)) (1)\nTrong đó:\n• x: Câu hỏi đầu vào\n• Retriever(x): Hàm truy xuất các tài liệu liên quan\n• Generator: Mô hình sinh câu trả lời\n2.2 Embedding và Vector Database\n2.2.1 Text Embedding\nText embedding là quá trình chuyển đổi văn bản thành vector số có số chiều cố định:\nE : Text → Rd (2)\nTrong đó d là số chiều của vector (thường là 384, 512, 768, v.v.)\nĐặc điểm quan trọng:\n• Văn bản có nghĩa tương tự sẽ có vector gần nhau trong không gian d chiều\n• Khoảng cách được tính bằng cosine similarity hoặc Euclidean distance\n2.2.2 FAISS (Facebook AI Similarity Search)",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 6,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 13
+        }
+      },
+      {
+        "page_content": "2.2.2 FAISS (Facebook AI Similarity Search)\nFAISS là thư viện hiệu quả cho similarity search và clustering của dense vectors:\nƯu điểm:\n• Tìm kiếm nhanh với hàng triệu vector\n• Hỗ trợ GPU acceleration\n• Memory-efficient indexing\n6",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 6,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 14
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n2.3 Large Language Models (LLMs)\n2.3.1 Qwen2.5\nQwen2.5 là mô hình ngôn ngữ lớn phát triển bởi Alibaba Cloud:\nĐặc điểm:\n• Kiến trúc transformer-based thế hệ mới\n• Hỗ trợ context dài lên đến 128K tokens\n• Tối ưu xuất sắc cho tiếng Việt và đa ngôn ngữ\n• Phiên bản 7B parameters cân bằng giữa hiệu suất và chất lượng\n• Được train trên corpus đa ngôn ngữ bao gồm tiếng Việt\n• Performance vượt trội so với Llama3 cho tiếng Việt\n2.3.2 Ollama\nOllama là framework để chạy LLMs locally:\nTính năng:\n• API đơn giản, dễ sử dụng\n• Hỗ trợ nhiều mô hình khác nhau\n• Tối ưu performance cho local machine\n• Không cần internet sau khi tải model\n2.4 LangChain Framework\nLangChain là framework Python để xây dựng ứng dụng với LLMs:\nThành phần chính:\n• Document Loaders: Tải và parse các định dạng tài liệu\n• Text Splitters: Chia văn bản thành chunks nhỏ\n• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 7,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 15
+        }
+      },
+      {
+        "page_content": "• Embeddings: Chuyển đổi text thành vectors\n• Vector Stores: Lưu trữ và tìm kiếm vectors\n• Retrievers: Truy xuất thông tin liên quan\n• Chains: Kết nối các thành phần lại với nhau\n7",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 7,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 16
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n3 THIẾT KẾ HỆ THỐNG\n3.1 Kiến trúc tổng quan\nHệ thống được thiết kế theo mô hình multi-layer architecture:\nPresentation Layer (Streamlit)\n• File Upload Interface\n• Question Input Interface\n• Answer Display\nApplication Layer (LangChain)\n• Document Processing Pipeline\n• RAG Chain Management\n• Prompt Engineering\nData Layer\n• FAISS Vector Store\n• Multilingual MPNet Embeddings (768-dimensional)\n• PDF Document Storage\nModel Layer (Ollama)\n• Qwen2.5:7b Model\n• LLM Inference Engine\nHình 1: Kiến trúc hệ thống RAG\n3.2 Data Flow (Luồng dữ liệu)\n3.2.1 Document Processing Flow\n1. Upload: Người dùng upload PDF file\n2. Loading: PDFPlumberLoader đọc nội dung PDF\n3. Splitting: RecursiveCharacterTextSplitter chia thành chunks\n4. Embedding: Multilingual MPNet (768-dim) chuyển chunks thành vectors\n5. Indexing: FAISS lưu trữ vectors vào index\n8",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 8,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 17
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n3.2.2 Query Processing Flow\n1. Query Input: Người dùng nhập câu hỏi\n2. Query Embedding: Chuyển câu hỏi thành vector\n3. Similarity Search: FAISS tìm top-k chunks liên quan nhất\n4. Context Building: Kết hợp các chunks thành context\n5. Prompt Construction: Tạo prompt với context và question\n6. LLM Inference: Qwen2.5:7b sinh câu trả lời\n7. Response Display: Hiển thị kết quả cho người dùng\n3.3 Chi tiết các thành phần\n3.3.1 Document Loader\n1 from langchain_community.document_loaders import PDFPlumberLoader\n2\n3 # Load PDF document\n4 loader = PDFPlumberLoader(\"document.pdf\")\n5 docs = loader.load()\nListing 1: Document Loading với PDFPlumber\nĐặc điểm PDFPlumberLoader:\n• Trích xuất text chính xác, bao gồm tables\n• Preserve layout information\n• Xử lý được các PDF phức tạp\n3.3.2 Text Splitter\n1 from langchain_text_splitters import RecursiveCharacterTextSplitter\n2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 9,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 18
+        }
+      },
+      {
+        "page_content": "2\n3 text_splitter = RecursiveCharacterTextSplitter(\n4 chunk_size=1000, # Length of each chunk\n5 chunk_overlap=100 # Overlap between chunks\n6 )\n7 documents = text_splitter.split_documents(docs)\nListing 2: Text Splitting\nTham số quan trọng:\n• chunk_size=1000: Mỗi chunk tối đa 1000 ký tự\n• chunk_overlap=100: 100 ký tự trùng lặp giữa các chunks liên tiếp\n• Overlap giúp đảm bảo ngữ cảnh không bị mất ở ranh giới\n9",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 9,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 19
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n3.3.3 Embedding Model\n1 from langchain_community.embeddings import HuggingFaceEmbeddings\n2\n3 # Using multilingual MPNet for Vietnamese support\n4 embedder = HuggingFaceEmbeddings(\n5 model_name=\"sentence-transformers/paraphrase-multilingual-mpnet-base\n-v2\",\n6 model_kwargs={’device’: ’cpu’},\n7 encode_kwargs={’normalize_embeddings’: True}\n8 )\n9 # Output dimension: 768\n10 # Supports: Vietnamese, English, Chinese, and 50+ languages\nListing 3: HuggingFace Embeddings\nModel được sử dụng: paraphrase-multilingual-mpnet-base-v2\n• 768-dimensional embeddings (chất lượng cao)\n• Hỗ trợ 50+ ngôn ngữ bao gồm tiếng Việt\n• MPNet architecture - state-of-the-art cho multilingual\n• Excellent quality cho semantic search tiếng Việt\n• Được train trên corpus tiếng Việt lớn\n3.3.4 Vector Store\n1 from langchain_community.vectorstores import FAISS\n2\n3 # Create vector store from documents\n4 vector = FAISS.from_documents(documents, embedder)\n5\n6 # Create retriever",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 10,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 20
+        }
+      },
+      {
+        "page_content": "4 vector = FAISS.from_documents(documents, embedder)\n5\n6 # Create retriever\n7 retriever = vector.as_retriever(\n8 search_type=\"similarity\",\n9 search_kwargs={\"k\": 3} # Retrieve top 3 results\n10 )\nListing 4: FAISS Vector Store\n3.3.5 LLM Integration\n1 from langchain_community.llms import Ollama\n2\n3 # Using Qwen2.5:7b for best Vietnamese support\n4 llm = Ollama(model=\"qwen2.5:7b\")\nListing 5: Ollama LLM\n10",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 10,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 21
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n3.4 Prompt Engineering\nPrompt được thiết kế để tối ưu hóa chất lượng câu trả lời:\n1 # Auto-detect language and respond accordingly\n2 vietnamese_chars = ’aaaaeeeiooouuuuyyyyd’\n3 is_vietnamese = any(char in user_input.lower()\n4 for char in vietnamese_chars)\n5\n6 if is_vietnamese:\n7 prompt_text = \"\"\"Su dung ngu canh sau day de tra loi cau hoi.\n8 Neu ban khong biet, chi can noi la ban khong biet.\n9 Tra loi ngan gon (3-4 cau) BAT BUOC bang tieng Viet.\n10\n11 Ngu canh: {context}\n12\n13 Cau hoi: {user_input}\n14\n15 Tra loi:\"\"\"\n16 else:\n17 prompt_text = \"\"\"Use the following context to answer the question.\n18 If you don’t know the answer, just say you don’t know.\n19 Keep answer concise (3-4 sentences).\n20\n21 Context: {context}\n22\n23 Question: {user_input}\n24\n25 Answer:\"\"\"\nListing 6: Prompt Template with Language Detection\nCác thành phần prompt:\n• Instruction: Hướng dẫn mô hình cách trả lời\n• Context: Thông tin liên quan từ tài liệu",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 11,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 22
+        }
+      },
+      {
+        "page_content": "• Instruction: Hướng dẫn mô hình cách trả lời\n• Context: Thông tin liên quan từ tài liệu\n• Question: Câu hỏi của người dùng\n• Constraint: Giới hạn độ dài và yêu cầu về format\n11",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 11,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 23
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n4 TRIỂN KHAI\n4.1 Công nghệ sử dụng\n4.1.1 Frontend\n• Streamlit 1.41.1: Framework cho web app\n• HTML/CSS: Custom styling\n4.1.2 Backend & AI\n• LangChain 0.3.16: Framework cho LLM applications\n• LangChain Community 0.3.16: Community extensions\n• FAISS 1.9.0: Vector similarity search\n• HuggingFace Transformers: Multilingual MPNet embedding model (768-dim)\n• Ollama: Local LLM runtime\n4.1.3 Document Processing\n• PDFPlumber: PDF text extraction\n• PyPDF: Alternative PDF processing\n4.1.4 Python Libraries\n• NumPy: Numerical computing\n• Pandas: Data manipulation\n• Torch (PyTorch): Deep learning backend\n4.2 Cài đặt môi trường\n4.2.1 Yêu cầu hệ thống\nSoftware:\n• Python 3.8+\n• Ollama runtime\n• pip package manager\n12",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 12,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 24
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n4.2.2 Các bước cài đặt\nBước 1: Clone hoặc tải project\n1 git clone [repository-url]\n2 cd Project-Deepseek-Rag-Agent\nBước 2: Tạo virtual environment\n1 python -m venv venv\n2 source venv/bin/activate # Linux/Mac\n3 # or\n4 venv\\Scripts\\activate # Windows\nBước 3: Cài đặt dependencies\n1 pip install -r requirements.txt\nBước 4: Cài đặt Ollama\n1 # Download from https://ollama.ai\n2 # Then pull Qwen2.5:7b model\n3 ollama pull qwen2.5:7b\nBước 5: Chạy ứng dụng\n1 streamlit run app.py\n4.3 Cấu trúc thư mục\nProject-LLMs-Rag-Agent/\n1\n|\n2\n+-- app.py # Main application file\n3\n+-- requirements.txt # Python dependencies\n4\n+-- requirements_simplified.txt # Simplified dependencies\n5\n+-- README.md # Project documentation\n6\n|\n7\n+-- data/ # Data directory\n8\n| +-- gutenberg.pdf # Sample PDF\n9\n|\n10\n+-- documentation/ # Project documentation\n11\n| +-- project_report.tex # LaTeX report\n12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 13,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 25
+        }
+      },
+      {
+        "page_content": "12\n| +-- README.md # Documentation guide\n13\n|\n14\n+-- venv/ # Virtual environment\n15\n4.4 Cấu hình chi tiết\n4.4.1 Embedding Configuration\n1 embedder = HuggingFaceEmbeddings(\n2 model_name=\"sentence-transformers/paraphrase-multilingual-mpnet-base\n-v2\",\n3 model_kwargs={’device’: ’cpu’}, # Or ’cuda’ if GPU available\n4 encode_kwargs={’normalize_embeddings’: True}\n5 )\n13",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 13,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 26
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n4.4.2 Retriever Configuration\n1 retriever = vector.as_retriever(\n2 search_type=\"similarity\", # Or \"mmr\" for diverse results\n3 search_kwargs={\n4 \"k\": 3, # Number of chunks to return\n5 \"fetch_k\": 20 # Fetch more then filter\n6 }\n7 )\n4.4.3 LLM Configuration\n1 llm = Ollama(\n2 model=\"qwen2.5:7b\",\n3 temperature=0.7, # Creativity level\n4 top_p=0.9, # Nucleus sampling\n5 repeat_penalty=1.1 # Avoid repetition\n6 )\n14",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 14,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 27
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n5 GIAO DIỆN NGƯỜI DÙNG\n5.1 Thiết kế UI/UX\n5.1.1 Color Palette\nHệ thống sử dụng bảng màu được tối ưu hóa cho accessibility:\n• Primary Color: #007BFF (Blue) - Buttons và highlights\n• Secondary Color: #FFC107 (Amber) - Upload buttons\n• Background: #F8F9FA (Light gray) - Main background\n• Sidebar: #2C2F33 (Dark gray) - Sidebar background\n• Text: #212529 (Dark gray) - Main text\n• Sidebar Text: #FFFFFF (White) - Sidebar text\n5.1.2 Layout Structure\nSidebar (Bên trái):\n• Instructions section\n• Settings information\n• Model configuration display\nMain Area (Chính giữa):\n• Title và header\n• File uploader\n• Question input\n• Answer display\n5.2 User Flow\n1. Landing: Người dùng thấy giao diện chính với hướng dẫn\n2. Upload: Click vào file uploader và chọn PDF\n3. Processing: Hệ thống xử lý tài liệu (hiển thị progress)\n4. Query: Nhập câu hỏi vào text input\n5. Response: Xem câu trả lời được sinh ra\n6. Iterate: Có thể đặt thêm nhiều câu hỏi\n15",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 15,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 28
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n5.3 Features\n5.3.1 File Upload\n• Support PDF format\n• Drag-and-drop interface\n• File size validation\n• Success/error notifications\n5.3.2 Question Answering\n• Natural language input\n• Real-time processing\n• Loading spinner during inference\n• Clear answer display\n5.3.3 Error Handling\n• Invalid file format warnings\n• Processing errors\n• Model connection errors\n• User-friendly error messages\n16",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 16,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 29
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n6 KẾT QUẢ VÀ ĐÁNH GIÁ\n6.1 Kết quả đạt được\n6.1.1 Chức năng hoàn thành\n✓ Upload và xử lý PDF documents\n✓ Text extraction và chunking\n✓ Vector embedding và indexing\n✓ Similarity search với FAISS\n✓ Integration với Qwen2.5:7b model\n✓ Question answering interface\n✓ User-friendly web interface\n✓ Error handling và validation\n6.1.2 Performance Metrics\nProcessing Time:\n• PDF Loading: 2-5 giây (phụ thuộc file size)\n• Embedding Generation: 5-10 giây cho 100 chunks\n• Query Processing: 1-3 giây\n• Answer Generation: 3-8 giây\nAccuracy:\n• Relevant document retrieval: 85-90%\n• Answer relevance: 80-85%\n• Factual accuracy: 75-80%\n6.2 Testing\n6.2.1 Test Cases\nTest Case 1: Simple Factual Question\n• Document: Technical manual\n• Question: \"What is the installation procedure?\"\n• Expected: Step-by-step instructions\n• Result: ✓ Passed\n17",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 17,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 30
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nTest Case 2: Complex Reasoning\n• Document: Research paper\n• Question: \"What are the main findings and their implications?\"\n• Expected: Summary với analysis\n• Result: ✓ Passed\nTest Case 3: Out-of-context Question\n• Document: Cooking recipe\n• Question: \"How to solve differential equations?\"\n• Expected: \"I don’t know\"response\n• Result: ✓ Passed\n6.3 Ưu điểm\n1. Privacy: Chạy hoàn toàn local, không gửi data ra ngoài\n2. Cost-effective: Không tốn phí API calls\n3. Customizable: Dễ dàng thay đổi models và parameters\n4. User-friendly: Giao diện đơn giản, dễ sử dụng\n5. Accurate: Retrieval-based giúp câu trả lời chính xác hơn\n6. Fast: Response time chấp nhận được\n6.4 Hạn chế\n1. Model size: 1.5B parameters có giới hạn về khả năng reasoning\n2. Context length: Giới hạn số lượng chunks có thể xử lý\n3. Language support: Chủ yếu tốt cho tiếng Anh\n4. PDF quality: Phụ thuộc vào chất lượng PDF input\n5. Hardware requirement: Cần máy tính đủ mạnh",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 18,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 31
+        }
+      },
+      {
+        "page_content": "4. PDF quality: Phụ thuộc vào chất lượng PDF input\n5. Hardware requirement: Cần máy tính đủ mạnh\n6.5 So sánh với các giải pháp khác\nFeature Dự án này ChatGPT Local LLM\nPrivacy ✓ ✗ ✓\nCost Free Paid Free\nCustomization High Low High\nDocument Upload ✓ ✓ ✗\nAccuracy Good Excellent Variable\nSpeed Fast Very Fast Slow\n18",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 18,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 32
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n7 HƯỚNG DẪN SỬ DỤNG\n7.1 Hướng dẫn cho người dùng cuối\n7.1.1 Khởi động ứng dụng\n1. Mở terminal/command prompt\n2. Navigate đến thư mục project\n3. Activate virtual environment:\n1 source venv/bin/activate # Mac/Linux\n2 venv\\Scripts\\activate # Windows\n3\n4. Chạy Streamlit:\n1 streamlit run app.py\n2\n5. Truy cập http://localhost:8501 trong browser\n7.1.2 Upload tài liệu\n1. Click vào \"Browse files\"hoặc drag-and-drop PDF\n2. Chờ thông báo \"PDF uploaded successfully!\"\n3. Hệ thống tự động xử lý document\n4. Xem progress trong các section: \"Splitting...\"và \"Creating embeddings...\"\n7.1.3 Đặt câu hỏi\n1. Sau khi document được xử lý, scroll xuống section \"Ask a Question\"\n2. Nhập câu hỏi vào text input\n3. Press Enter hoặc click bên ngoài input box\n4. Chờ spinner \"Processing your query...\"\n5. Xem câu trả lời hiển thị dưới section \"Response\"\n7.1.4 Tips sử dụng\nĐể câu trả lời chính xác hơn:\n• Đặt câu hỏi cụ thể, rõ ràng\n• Sử dụng từ khóa có trong document",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 19,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 33
+        }
+      },
+      {
+        "page_content": "Để câu trả lời chính xác hơn:\n• Đặt câu hỏi cụ thể, rõ ràng\n• Sử dụng từ khóa có trong document\n• Tránh câu hỏi quá chung chung\n• Chia câu hỏi phức tạp thành nhiều câu nhỏ\n19",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 19,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 34
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nXử lý lỗi:\n• Nếu upload fail: Check file format (phải là PDF)\n• Nếu processing lâu: Check file size (nên < 50MB)\n• Nếu không có response: Kiểm tra Ollama đang chạy\n• Nếu lỗi khác: Xem error message và retry\n7.2 Hướng dẫn cho developers\n7.2.1 Customize embedding model\n1 # Modify in app.py\n2 embedder = HuggingFaceEmbeddings(\n3 model_name=\"sentence-transformers/paraphrase-multilingual-mpnet-base\n-v2\" # Best for Vietnamese\n4 )\n7.2.2 Adjust chunk parameters\n1 text_splitter = RecursiveCharacterTextSplitter(\n2 chunk_size=1500, # Increase for more context\n3 chunk_overlap=200 # Increase overlap\n4 )\n7.2.3 Thay đổi LLM model\n1 # Pull other models\n2 ollama pull llama2:7b\n3 ollama pull mistral:7b\n1 # Update in app.py\n2 llm = Ollama(model=\"llama2:7b\")\n7.2.4 Modify retrieval parameters\n1 retriever = vector.as_retriever(\n2 search_type=\"mmr\", # Maximum Marginal Relevance\n3 search_kwargs={\n4 \"k\": 5, # Retrieve more results\n5 \"fetch_k\": 30,",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 20,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 35
+        }
+      },
+      {
+        "page_content": "3 search_kwargs={\n4 \"k\": 5, # Retrieve more results\n5 \"fetch_k\": 30,\n6 \"lambda_mult\": 0.7 # Diversity parameter\n7 }\n8 )\n20",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 20,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 36
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n7.2.5 Add logging\n1 import logging\n2\n3 logging.basicConfig(level=logging.INFO)\n4 logger = logging.getLogger(__name__)\n5\n6 # Add in the steps\n7 logger.info(f\"Processing {len(documents)} chunks\")\n8 logger.info(f\"Query: {user_input}\")\n9 logger.info(f\"Retrieved {len(relevant_docs)} documents\")\n21",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 21,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 37
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n8 YÊU CẦU PHÁT TRIỂN PROJECT\n8.1 Giới thiệu\nPhần này đưa ra các yêu cầu phát triển thêm cho project, được sắp xếp theo mức độ khó\ntăng dần. Sinh viên cần hoàn thành các yêu cầu để nâng cao kỹ năng và mở rộng tính\nnăng của hệ thống RAG.\n8.2 Các yêu cầu phát triển\n8.2.1 Câu hỏi 1: Thêm hỗ trợ file DOCX\nYêu cầu:\n• Mở rộng hệ thống để hỗ trợ tải lên và xử lý file DOCX\n• Sử dụng thư viện phù hợp (python-docx hoặc DocxLoader từ LangChain)\n• Đảm bảo text extraction chính xác\n8.2.2 Câu hỏi 2: Lưu trữ lịch sử hội thoại\nYêu cầu:\n• Lưu trữ các câu hỏi và câu trả lời trong session\n• Hiển thị lịch sử chat trong sidebar\n• Cho phép người dùng xem lại các câu hỏi đã hỏi\n8.2.3 Câu hỏi 3: Thêm nút xóa lịch sử\nYêu cầu:\n• Thêm button \"Clear History\"để xóa toàn bộ lịch sử chat\n• Thêm button \"Clear Vector Store\"để xóa tài liệu đã upload\n• Có confirmation dialog trước khi xóa\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy\nYêu cầu:",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 22,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 38
+        }
+      },
+      {
+        "page_content": "• Có confirmation dialog trước khi xóa\n8.2.4 Câu hỏi 4: Cải thiện chunk strategy\nYêu cầu:\n• Thử nghiệm các giá trị chunk_size khác nhau (500, 1000, 1500, 2000)\n• Thử nghiệm chunk_overlap khác nhau (50, 100, 200)\n• So sánh và báo cáo kết quả về độ chính xác\n• Cho phép người dùng tùy chỉnh chunk parameters\n22",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 22,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 39
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n8.2.5 Câu hỏi 5: Thêm citation/source tracking\nYêu cầu:\n• Hiển thị nguồn gốc của thông tin (trang số, vị trí trong PDF)\n• Cho phép người dùng click để xem context gốc\n• Highlight các đoạn văn được sử dụng để trả lời\n8.2.6 Câu hỏi 6: Implement Conversational RAG\nYêu cầu:\n• Thêm memory để theo dõi ngữ cảnh cuộc hội thoại\n• LLM có thể tham chiếu câu hỏi và trả lời trước đó\n• Xử lý follow-up questions (câu hỏi tiếp theo)\n8.2.7 Câu hỏi 7: Thêm hybrid search\nYêu cầu:\n• Kết hợp semantic search (vector) với keyword search (BM25)\n• Implement ensemble retriever\n• So sánh performance với pure vector search\n8.2.8 Câu hỏi 8: Multi-document RAG với metadata filtering\nYêu cầu:\n• Hỗ trợ upload nhiều PDF cùng lúc\n• Lưu trữ metadata cho mỗi document (tên file, ngày upload, loại)\n• Cho phép filter theo metadata khi search\n• Hiển thị câu trả lời từ document nào\n8.2.9 Câu hỏi 9: Implement Re-ranking với Cross-Encoder\nYêu cầu:\n• Thêm bước re-ranking sau retrieval",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 23,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 40
+        }
+      },
+      {
+        "page_content": "Yêu cầu:\n• Thêm bước re-ranking sau retrieval\n• Sử dụng cross-encoder model để đánh giá lại relevance\n• So sánh với bi-encoder (current approach)\n• Tối ưu hóa latency\n23",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 23,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 41
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n8.2.10 Câu hỏi 10: Advanced RAG với Self-RAG\nYêu cầu:\n• Implement Self-RAG: LLM tự đánh giá câu trả lời\n• Query rewriting: Tự động cải thiện câu hỏi\n• Multi-hop reasoning\n• Confidence scoring\n8.3 Hướng dẫn đánh giá\nMỗi câu hỏi được đánh giá theo:\n• Functionality (40%): Hoạt động đúng\n• Code Quality (20%): Clean code, comments\n• Documentation (20%): README, docs\n• Testing (10%): Test cases\n• UI/UX (10%): User-friendly\nĐiểm thưởng:\n• Performance optimization: +10%\n• Error handling: +5%\n• Creative solutions: +5%\n• Comprehensive tests: +10%\n24",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 24,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 42
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\n9 KẾT LUẬN\n9.1 Tổng kết\nDự án đã xây dựng thành công một hệ thống RAG hoàn chỉnh với các tính năng:\n• Hỗ trợ tải lên và xử lý file PDF\n• Embedding đa ngôn ngữ với MPNet\n• Vector search với FAISS\n• LLM integration với Ollama (Qwen2.5:7b)\n• Giao diện web thân thiện với Streamlit\n• Tự động phát hiện ngôn ngữ và trả lời phù hợp\nHệ thống đã được test với nhiều loại tài liệu và cho kết quả chính xác, đáp ứng được\nyêu cầu đặt ra.\n25",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 25,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 43
+        }
+      },
+      {
+        "page_content": "Bài tập lớn OSSD 2026 RAG System với LLMs\nTài liệu\n[1] LangChain Documentation. LangChain: Building applications with LLMs\nthrough composability. https://python.langchain.com/docs/get_started/\nintroduction\n[2] Ollama.Get up and running with large language models locally.https://ollama.ai/\n[3] Johnson,J.,Douze,M.,&Jégou,H.(2019).Billion-scale similaritysearch withGPUs.\nIEEE Transactions on Big Data.\n[4] Streamlit Documentation. The fastest way to build and share data apps. https:\n//docs.streamlit.io/\n[5] Wolf, T., et al. (2020). Transformers: State-of-the-art Natural Language Processing.\nEMNLP 2020.\n[6] Lewis, P., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive\nNLP Tasks. NeurIPS 2020.\n26",
+        "metadata": {
+          "source": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "file_path": "C:\\Users\\TOMINH~1\\AppData\\Local\\Temp\\tmpsw8j264d.pdf",
+          "page": 26,
+          "total_pages": 27,
+          "Producer": "pdfTeX-1.40.26",
+          "Author": "",
+          "Title": "",
+          "Subject": "",
+          "Creator": "LaTeX with hyperref",
+          "Keywords": "",
+          "CreationDate": "D:20260128012031+07'00'",
+          "ModDate": "D:20260128012031+07'00'",
+          "Trapped": "False",
+          "PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) kpathsea version 6.4.0",
+          "source_file": "project_report_final.pdf",
+          "chunk_id": 44
+        }
+      }
+    ]
   }
 }

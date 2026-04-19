@@ -16,134 +16,53 @@ st.markdown("""
 * { font-family: 'Space Grotesk', sans-serif; }
 code, .mono { font-family: 'JetBrains Mono', monospace; }
 
-/* ── Mode selector tabs ── */
-.mode-bar {
-    display: flex; gap: 8px; padding: 12px 0; margin-bottom: 8px;
-}
-.mode-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.05em;
-}
+.mode-bar { display: flex; gap: 8px; padding: 12px 0; margin-bottom: 8px; }
+.mode-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 .badge-rag { background: #1e3a5f; color: #60a5fa; border: 1px solid #2563eb30; }
 .badge-corag { background: #1a1a2e; color: #a78bfa; border: 1px solid #7c3aed30; }
 .badge-compare { background: #1a2e1a; color: #4ade80; border: 1px solid #16a34a30; }
 
-/* ── Panels ── */
-.panel-rag {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid #2563eb40;
-    border-radius: 12px; padding: 16px;
-    box-shadow: 0 4px 24px #2563eb15;
-}
-.panel-corag {
-    background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%);
-    border: 1px solid #7c3aed40;
-    border-radius: 12px; padding: 16px;
-    box-shadow: 0 4px 24px #7c3aed15;
-}
-.panel-header-rag {
-    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
-    color: #60a5fa; text-transform: uppercase; margin-bottom: 12px;
-    padding-bottom: 8px; border-bottom: 1px solid #2563eb30;
-}
-.panel-header-corag {
-    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
-    color: #a78bfa; text-transform: uppercase; margin-bottom: 12px;
-    padding-bottom: 8px; border-bottom: 1px solid #7c3aed30;
-}
+.panel-rag { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid #2563eb40; border-radius: 12px; padding: 16px; box-shadow: 0 4px 24px #2563eb15; }
+.panel-corag { background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%); border: 1px solid #7c3aed40; border-radius: 12px; padding: 16px; box-shadow: 0 4px 24px #7c3aed15; }
+.panel-header-rag { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; color: #60a5fa; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2563eb30; }
+.panel-header-corag { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; color: #a78bfa; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #7c3aed30; }
 
-/* ── CO-RAG step log ── */
-.step-log {
-    background: #0a0a14; border: 1px solid #7c3aed25;
-    border-radius: 8px; padding: 10px 14px; margin-top: 10px;
-}
-.step-item {
-    display: flex; gap: 10px; padding: 5px 0;
-    border-bottom: 1px solid #ffffff08; font-size: 0.78rem;
-}
+.step-log { background: #0a0a14; border: 1px solid #7c3aed25; border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+.step-item { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px solid #ffffff08; font-size: 0.78rem; }
 .step-item:last-child { border-bottom: none; }
 .step-name { color: #a78bfa; font-weight: 600; min-width: 220px; }
 .step-detail { color: #94a3b8; }
 
-/* ── Confidence bar ── */
-.conf-bar-wrap {
-    background: #ffffff10; border-radius: 99px; height: 6px;
-    margin: 6px 0 2px; overflow: hidden;
-}
-.conf-bar-fill {
-    height: 100%; border-radius: 99px;
-    background: linear-gradient(90deg, #7c3aed, #a78bfa);
-    transition: width 0.5s ease;
-}
+.conf-bar-wrap { background: #ffffff10; border-radius: 99px; height: 6px; margin: 6px 0 2px; overflow: hidden; }
+.conf-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #7c3aed, #a78bfa); transition: width 0.5s ease; }
 .conf-label { font-size: 0.72rem; color: #64748b; }
 
-/* ── Quality badge ── */
 .quality-high { color: #4ade80; font-weight: 700; }
 .quality-medium { color: #fbbf24; font-weight: 700; }
 .quality-low { color: #f87171; font-weight: 700; }
 
-/* ── Welcome ── */
-.welcome-title {
-    text-align: center; font-size: 2.2rem; font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #4ade80 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-top: 5vh; letter-spacing: -0.02em;
-}
-.welcome-sub {
-    text-align: center; color: #475569; font-size: 0.95rem; margin-top: 8px;
-}
+.welcome-title { text-align: center; font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #4ade80 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 5vh; letter-spacing: -0.02em; }
+.welcome-sub { text-align: center; color: #475569; font-size: 0.95rem; margin-top: 8px; }
 
-/* ── Source chips ── */
-.src-chip {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: #1e293b; border: 1px solid #334155;
-    border-radius: 6px; padding: 3px 10px; font-size: 0.72rem;
-    color: #94a3b8; margin: 3px 2px;
-}
+.src-chip { display: inline-flex; align-items: center; gap: 4px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; padding: 3px 10px; font-size: 0.72rem; color: #94a3b8; margin: 3px 2px; }
 
-/* ── Citation cards ── */
-.cit-label {
-    font-size: .7rem; color: #6b7280; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .09em;
-    margin: 16px 0 8px; display: flex; align-items: center; gap: 6px;
-}
-.cit-card {
-    background: #141420; border: 1px solid #2a2a3d;
-    border-radius: 10px; padding: 11px 13px;
-    transition: border-color .18s, box-shadow .18s; margin-bottom: 4px;
-}
+.cit-label { font-size: .7rem; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; margin: 16px 0 8px; display: flex; align-items: center; gap: 6px; }
+.cit-card { background: #141420; border: 1px solid #2a2a3d; border-radius: 10px; padding: 11px 13px; transition: border-color .18s, box-shadow .18s; margin-bottom: 4px; }
 .cit-card:hover { border-color: #6d28d9; box-shadow: 0 0 0 3px rgba(109,40,217,.12); }
 .cit-row { display: flex; align-items: flex-start; gap: 8px; }
-.cit-badge {
-    flex-shrink: 0; width: 20px; height: 20px;
-    background: #4c1d95; color: #ddd6fe;
-    border-radius: 5px; font-size: .65rem; font-weight: 800;
-    display: flex; align-items: center; justify-content: center; margin-top: 1px;
-}
+.cit-badge { flex-shrink: 0; width: 20px; height: 20px; background: #4c1d95; color: #ddd6fe; border-radius: 5px; font-size: .65rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
 .cit-info { flex: 1; min-width: 0; }
-.cit-fname {
-    font-size: .78rem; font-weight: 600; color: #c4b5fd;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
+.cit-fname { font-size: .78rem; font-weight: 600; color: #c4b5fd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cit-page { font-size: .67rem; color: #6b7280; margin-top: 2px; }
 .cit-sep { border-top: 1px solid #2a2a3d; margin: 8px 0; }
-.cit-snip {
-    font-size: .71rem; color: #94a3b8; line-height: 1.5; font-style: italic;
-    border-left: 2px solid #4c1d95; padding-left: 7px;
-    overflow: hidden;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-}
+.cit-snip { font-size: .71rem; color: #94a3b8; line-height: 1.5; font-style: italic; border-left: 2px solid #4c1d95; padding-left: 7px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .cit-bar { height: 2px; background: #2a2a3d; border-radius: 1px; margin-top: 8px; }
-.cit-bar-fill {
-    height: 100%; background: linear-gradient(90deg, #4c1d95, #7c3aed); border-radius: 1px;
-}
+.cit-bar-fill { height: 100%; background: linear-gradient(90deg, #4c1d95, #7c3aed); border-radius: 1px; }
 </style>
 """, unsafe_allow_html=True)
 
 
 def highlight_keywords(text: str, query: str, answer: str = "") -> str:
-    # Combine words from both question and answer for richer highlighting
     combined = f"{query} {answer}"
     seen = set()
     keywords = []
@@ -161,13 +80,8 @@ def highlight_keywords(text: str, query: str, answer: str = "") -> str:
 def display_sources(sources):
     if not sources:
         return
-
     n = len(sources)
-    st.markdown(
-        f'<div class="cit-label">📎 Nguồn tham khảo &nbsp;·&nbsp; {n} đoạn</div>',
-        unsafe_allow_html=True,
-    )
-
+    st.markdown(f'<div class="cit-label">📎 Nguồn tham khảo &nbsp;·&nbsp; {n} đoạn</div>', unsafe_allow_html=True)
     cols = st.columns(min(n, 3))
     for i, src in enumerate(sources):
         with cols[i % len(cols)]:
@@ -176,7 +90,6 @@ def display_sources(sources):
             snip = src["preview"][:110] + "…" if len(src["preview"]) > 110 else src["preview"]
             score = src.get("score", 0.8)
             score_pct = int(min(1.0, max(0.0, score)) * 100)
-
             st.markdown(f"""
 <div class="cit-card">
   <div class="cit-row">
@@ -190,17 +103,12 @@ def display_sources(sources):
   <div class="cit-snip">"{snip}"</div>
   <div class="cit-bar"><div class="cit-bar-fill" style="width:{score_pct}%"></div></div>
 </div>""", unsafe_allow_html=True)
-
             with st.popover("Xem đầy đủ →", use_container_width=True):
                 st.markdown(f"**📄 {fname}**")
                 st.caption(f"Trang {src['page']} · Đoạn #{src['chunk_id']} · Độ liên quan {score_pct}%")
                 st.divider()
                 full = src.get("full_content", src["preview"])
-                full = highlight_keywords(
-                    full,
-                    src.get("query", ""),
-                    src.get("answer", ""),
-                )
+                full = highlight_keywords(full, src.get("query", ""), src.get("answer", ""))
                 st.markdown(full)
 
 
@@ -226,9 +134,10 @@ def init_session():
         'confirm_del_id': None,
         'confirm_clear_docs': False,
         'app_mode': 'rag',
-        'selected_docs': []
+        'selected_docs': [],
+        # ── THÊM MỚI: Câu 10 Self-RAG ────────────────────────────
+        'use_self_rag': False,
     }
-
     for k, v in defaults.items():
         if k not in st.session_state:
             st.session_state[k] = v
@@ -240,7 +149,6 @@ if 'chat_sessions' not in st.session_state:
 active_id = st.session_state.current_id
 active_session = st.session_state.chat_sessions[active_id]
 
-# Vector store management
 if active_session["all_chunks_data"] and 'vector_store' not in st.session_state:
     st.session_state.vector_store = create_vector_store(active_session["all_chunks_data"])
 elif not active_session["all_chunks_data"] and 'vector_store' in st.session_state:
@@ -266,7 +174,7 @@ with st.sidebar:
     for sid, sdata in reversed(list(st.session_state.chat_sessions.items())):
         col_name, col_del = st.columns([0.8, 0.2])
         with col_name:
-            if st.button(sdata['name'], key=f"s_{sid}", use_container_width=True,type="secondary"):
+            if st.button(sdata['name'], key=f"s_{sid}", use_container_width=True, type="secondary"):
                 st.session_state.current_id = sid
                 if 'vector_store' in st.session_state:
                     del st.session_state.vector_store
@@ -293,7 +201,6 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # Metadata Filtering
     st.markdown("### 📂 Bộ lọc tài liệu")
     available_files = list(active_session["documents"].keys())
     if available_files:
@@ -307,12 +214,8 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # Mode Selector
     st.markdown("### 🔀 Chế độ hoạt động")
-    mode_options = {
-        "RAG (Chuẩn)": "rag",
-        "CO-RAG (Nâng cao)": "corag",
-    }
+    mode_options = {"RAG (Chuẩn)": "rag", "CO-RAG (Nâng cao)": "corag"}
     st.session_state.app_mode = mode_options[st.radio(
         "Chọn chế độ:",
         list(mode_options.keys()),
@@ -325,32 +228,81 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── [Cấu hình hệ thống] ──
     with st.expander("⚙️ Cấu hình hệ thống"):
         st.session_state.chunk_size = st.slider("Chunk Size", 500, 2000, st.session_state.chunk_size)
         st.session_state.chunk_overlap = st.slider("Chunk Overlap", 0, 200, st.session_state.chunk_overlap)
-
-        # Hybrid Search Toggle
         st.session_state.use_hybrid = st.toggle("🔀 Hybrid Search", value=st.session_state.use_hybrid)
         st.session_state.use_reranking = st.toggle("🎯 Rerank (Cross-Encoder)", value=st.session_state.use_reranking)
         st.session_state.retriever_k = st.slider("Top-K Retrieval", 1, 10, st.session_state.retriever_k)
 
-# Helper: Render một message trong history
+        # ── THÊM MỚI: Câu 10 — Toggle Self-RAG ──────────────────
+        st.markdown("---")
+        st.session_state.use_self_rag = st.toggle(
+            "🧠 Self-RAG",
+            value=st.session_state.use_self_rag,
+            help="Câu 10: LLM tự cải thiện câu hỏi (query rewriting) và tự đánh giá câu trả lời (self-evaluation)."
+        )
+        if st.session_state.use_self_rag:
+            st.caption("🔁 Gọi LLM thêm 2 lần: rewrite query + self-evaluate.")
+
+
+# ─── Helper functions ─────────────────────────────────────────────────────────
 def render_history_message(msg, mode):
-    """Vẽ một message từ history, hỗ trợ cả RAG và CO-RAG metadata"""
     role = msg["role"]
     avatar = "🧑‍💻" if role == "user" else ("🟣" if mode == "corag" else "🔵")
 
     with st.chat_message(role, avatar=avatar):
         st.markdown(msg["content"])
+
         if role == "assistant" and msg.get("sources"):
             display_sources(msg["sources"])
+
+        # ── THÊM MỚI: Câu 9 — Latency expander ──────────────────
+        if role == "assistant" and msg.get("latency"):
+            lat = msg["latency"]
+            with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
+                col1, col2, col3 = st.columns(3)
+                col1.metric("🔵 FAISS Retrieve", f"{lat['retrieve_ms']} ms",
+                            help="Bi-Encoder: embed riêng lẻ → nhanh")
+                col2.metric("🟠 Cross-Encoder Rerank",
+                            f"{lat['rerank_ms']} ms" if lat['reranking_used'] else "Tắt",
+                            help="Cross-Encoder: đọc đồng thời → chính xác hơn")
+                col3.metric("⏳ Tổng", f"{lat['total_ms']} ms")
+                if lat['reranking_used']:
+                    st.info(f"Cross-Encoder chính xác hơn, overhead +{lat['rerank_ms']}ms "
+                            f"so với Bi-Encoder ({lat['retrieve_ms']}ms).")
+                else:
+                    st.caption("Bật **🎯 Rerank** trong cấu hình để xem so sánh.")
+
+        # ── THÊM MỚI: Câu 10 — Self-RAG expander ────────────────
+        if role == "assistant" and msg.get("self_rag"):
+            meta = msg["self_rag"]
+            ev = meta["evaluation"]
+            with st.expander(f"🧠 Câu 10 — Self-RAG  {ev['icon']} {ev['label_vn']}"):
+                st.markdown("**🔁 Query Rewriting:**")
+                col_a, col_b = st.columns(2)
+                with col_a:
+                    st.markdown(f"Query gốc: *{meta['original_query']}*")
+                with col_b:
+                    if meta["was_rewritten"]:
+                        st.markdown(f"Query rewritten: **{meta['rewritten_query']}**")
+                    else:
+                        st.markdown("Query rewritten: *(không thay đổi)*")
+                st.markdown("---")
+                st.markdown("**🔍 Self-Evaluation:**")
+                st.progress(ev["score"], text=f"{ev['icon']} {ev['label']} — Độ tin cậy: {ev['score']*100:.0f}%")
+                explanation = {
+                    "SUPPORTED": "✅ Câu trả lời hoàn toàn dựa trên nội dung tài liệu.",
+                    "PARTIALLY_SUPPORTED": "⚠️ Một phần từ tài liệu, một phần từ kiến thức tổng hợp.",
+                    "NOT_SUPPORTED": "❌ Không tìm thấy trong tài liệu. Dựa vào kiến thức chung.",
+                }
+                st.caption(explanation.get(ev["label"], ""))
+
         if role == "assistant" and msg.get("corag_meta") and mode == "corag":
             _render_corag_meta(msg["corag_meta"])
 
 
 def _render_corag_meta(meta: dict):
-    """Hiển thị thông tin bổ sung của CO-RAG (steps, confidence, quality...)"""
     conf = meta.get("confidence", 0)
     grounded = meta.get("grounded", True)
     quality = meta.get("relevance_quality", "n/a")
@@ -358,7 +310,6 @@ def _render_corag_meta(meta: dict):
     rewritten_q = meta.get("rewritten_query", "")
     steps = meta.get("corag_steps", [])
 
-    # Confidence bar
     bar_color = "#4ade80" if conf >= 70 else ("#fbbf24" if conf >= 40 else "#f87171")
     quality_class = f"quality-{quality}" if quality in ("high", "medium", "low") else ""
     ground_icon = "✅" if grounded else "⚠️"
@@ -387,7 +338,6 @@ def _render_corag_meta(meta: dict):
 # ─── Main Area ────────────────────────────────────────────────────────────────
 mode = st.session_state.app_mode
 
-# Welcome screen
 if not active_session["history"]:
     st.markdown('<div class="welcome-title">✨ SmartDoc AI</div>', unsafe_allow_html=True)
     mode_desc = {
@@ -396,8 +346,6 @@ if not active_session["history"]:
     }
     st.markdown(f'<div class="welcome-sub">{mode_desc[mode]}</div>', unsafe_allow_html=True)
 
-# Hiển thị lịch sử hội thoại và trích dẫn
-
 for msg in active_session["history"]:
     render_history_message(msg, mode)
 
@@ -405,11 +353,8 @@ for msg in active_session["history"]:
 with st.container():
     if active_session["documents"]:
         st.markdown("**📄 Tài liệu trong chat này:**")
-        # Hiển thị danh sách file
         for doc_name in active_session["documents"].keys():
             st.caption(f"✅ {doc_name}")
-
-        # Thống kê kỹ thuật (Yêu cầu nâng cao cho đồ án)
         stats = get_chunk_stats(active_session["all_chunks_data"])
         st.caption(
             f"📊 {stats['num_chunks']} chunks · TB {stats['avg_length']} ký tự · "
@@ -435,7 +380,6 @@ with st.container():
                 if chunks:
                     active_session["all_chunks_data"].extend(chunks)
                     active_session["documents"][f.name] = True
-            # Cập nhật Vector Store ngay sau khi tải
             st.session_state.vector_store = create_vector_store(active_session["all_chunks_data"])
             stats = get_chunk_stats(active_session["all_chunks_data"])
             st.info(
@@ -470,64 +414,96 @@ if query := st.chat_input("Hỏi SmartDoc..."):
     with st.chat_message("user", avatar="🧑‍💻"):
         st.markdown(query)
 
-    # Lấy tài nguyên hệ thống
     vs = st.session_state.get('vector_store')
     chunks = active_session["all_chunks_data"]
     from application_layer import load_dependencies
     mods = load_dependencies()
-    # ── Chế độ RAG đơn  ─────────────────────────────────
+
+    # ── Chế độ RAG ───────────────────────────────────────────────
     if mode == "rag":
         with st.chat_message("assistant", avatar="🔵"):
             with st.spinner("⚡ RAG đang xử lý..."):
-                # Cấy các tham số từ HEAD vào lời gọi hàm của Remote
                 res = answer_question(
-                    query, vs, chunks,
-                    history=active_session["history"][:-1],  # [Câu 6]: Hội thoại
-                    use_rerank=st.session_state.use_reranking,
-                    k=st.session_state.retriever_k,
-                    use_hybrid=st.session_state.use_hybrid,  # [Câu 7]: Hybrid Search
-                )
-                st.markdown(res["answer"])
-                if res.get("sources"):
-                    display_sources(res["sources"])
-
-                # Lưu vào history kèm nguồn trích dẫn
-                active_session["history"].append({
-                    "role": "assistant",
-                    "content": res["answer"],
-                    "sources": res.get("sources", [])
-                })
-
-    # ── Chế độ CO-RAG đơn ──────────────────────
-    elif mode == "corag":
-        with st.chat_message("assistant", avatar="🟣"):
-            with st.spinner("🛡️ CO-RAG đang đánh giá và xử lý..."):
-                # CO-RAG cũng cần filter_files và history để thông minh hơn
-                if vs is None:
-                    st.warning("Chưa có tài liệu.")
-                else:
-                    cres = answer_with_corag(
                     query, vs, chunks,
                     history=active_session["history"][:-1],
                     use_rerank=st.session_state.use_reranking,
                     k=st.session_state.retriever_k,
                     use_hybrid=st.session_state.use_hybrid,
-                    mods=mods,
                 )
-                st.markdown(cres["answer"])
-                if cres.get("sources"):
-                    display_sources(cres["sources"])
+                st.markdown(res["answer"])
+                if res.get("sources"):
+                    display_sources(res["sources"])
 
-                # Hiển thị các bước suy luận đặc trưng của CO-RAG
-                meta = {k: cres[k] for k in ["corag_steps", "confidence", "grounded",
-                                             "query_rewritten", "rewritten_query",
-                                             "relevance_quality", "relevant_ratio"] if k in cres}
-                _render_corag_meta(meta)
+                # ── THÊM MỚI: Hiển thị câu 9 ngay sau trả lời ───
+                if res.get("latency"):
+                    lat = res["latency"]
+                    with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
+                        col1, col2, col3 = st.columns(3)
+                        col1.metric("🔵 FAISS Retrieve", f"{lat['retrieve_ms']} ms")
+                        col2.metric("🟠 Cross-Encoder Rerank",
+                                    f"{lat['rerank_ms']} ms" if lat['reranking_used'] else "Tắt")
+                        col3.metric("⏳ Tổng", f"{lat['total_ms']} ms")
+                        if lat['reranking_used']:
+                            st.info(f"Cross-Encoder chính xác hơn, overhead +{lat['rerank_ms']}ms.")
+                        else:
+                            st.caption("Bật 🎯 Rerank để xem so sánh.")
 
+                # ── THÊM MỚI: Hiển thị câu 10 ngay sau trả lời ──
+                if res.get("self_rag"):
+                    meta = res["self_rag"]
+                    ev = meta["evaluation"]
+                    with st.expander(f"🧠 Câu 10 — Self-RAG  {ev['icon']} {ev['label_vn']}"):
+                        col_a, col_b = st.columns(2)
+                        with col_a:
+                            st.markdown(f"Query gốc: *{meta['original_query']}*")
+                        with col_b:
+                            if meta["was_rewritten"]:
+                                st.markdown(f"Query rewritten: **{meta['rewritten_query']}**")
+                            else:
+                                st.markdown("Query rewritten: *(không thay đổi)*")
+                        st.markdown("---")
+                        st.progress(ev["score"],
+                                    text=f"{ev['icon']} {ev['label']} — {ev['score']*100:.0f}%")
+
+                # ── THÊM MỚI: Lưu latency & self_rag vào history ─
                 active_session["history"].append({
-                    "role": "assistant", "content": cres["answer"],
-                    "sources": cres.get("sources", []), "corag_meta": meta
+                    "role": "assistant",
+                    "content": res["answer"],
+                    "sources": res.get("sources", []),
+                    "latency": res.get("latency"),    # Câu 9
+                    "self_rag": res.get("self_rag"),  # Câu 10
                 })
+
+    # ── Chế độ CO-RAG ────────────────────────────────────────────
+    elif mode == "corag":
+        with st.chat_message("assistant", avatar="🟣"):
+            with st.spinner("🛡️ CO-RAG đang đánh giá và xử lý..."):
+                if vs is None:
+                    st.warning("Chưa có tài liệu.")
+                else:
+                    cres = answer_with_corag(
+                        query, vs, chunks,
+                        history=active_session["history"][:-1],
+                        use_rerank=st.session_state.use_reranking,
+                        k=st.session_state.retriever_k,
+                        use_hybrid=st.session_state.use_hybrid,
+                        mods=mods,
+                    )
+                    st.markdown(cres["answer"])
+                    if cres.get("sources"):
+                        display_sources(cres["sources"])
+
+                    meta = {k: cres[k] for k in ["corag_steps", "confidence", "grounded",
+                                                  "query_rewritten", "rewritten_query",
+                                                  "relevance_quality", "relevant_ratio"] if k in cres}
+                    _render_corag_meta(meta)
+
+                    active_session["history"].append({
+                        "role": "assistant",
+                        "content": cres["answer"],
+                        "sources": cres.get("sources", []),
+                        "corag_meta": meta
+                    })
 
     save_chat_history(st.session_state.chat_sessions)
     st.rerun()
