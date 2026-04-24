@@ -1,4 +1,3 @@
-# app.py — SmartDoc AI với chế độ so sánh RAG vs CO-RAG
 import re
 import streamlit as st
 import uuid
@@ -156,7 +155,7 @@ elif not active_session["all_chunks_data"] and 'vector_store' in st.session_stat
         del st.session_state.vector_store
 
 
-# ─── Sidebar ─────────────────────────────────────────────────────────────────
+# Sidebar
 with st.sidebar:
     st.markdown("### 💬 Lịch sử trò chuyện")
 
@@ -246,7 +245,7 @@ with st.sidebar:
             st.caption("🔁 Gọi LLM thêm 2 lần: rewrite query + self-evaluate.")
 
 
-# ─── Helper functions ─────────────────────────────────────────────────────────
+# Helper functions
 def render_history_message(msg, mode):
     role = msg["role"]
     avatar = "🧑‍💻" if role == "user" else ("🟣" if mode == "corag" else "🔵")
@@ -257,7 +256,7 @@ def render_history_message(msg, mode):
         if role == "assistant" and msg.get("sources"):
             display_sources(msg["sources"])
 
-        # ── THÊM MỚI: Câu 9 — Latency expander ──────────────────
+        # Câu 9
         if role == "assistant" and msg.get("latency"):
             lat = msg["latency"]
             with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
@@ -274,7 +273,7 @@ def render_history_message(msg, mode):
                 else:
                     st.caption("Bật **🎯 Rerank** trong cấu hình để xem so sánh.")
 
-        # ── THÊM MỚI: Câu 10 — Self-RAG expander ────────────────
+        # Câu 10
         if role == "assistant" and msg.get("self_rag"):
             meta = msg["self_rag"]
             ev = meta["evaluation"]
@@ -335,7 +334,7 @@ def _render_corag_meta(meta: dict):
             st.markdown(step_html, unsafe_allow_html=True)
 
 
-# ─── Main Area ────────────────────────────────────────────────────────────────
+# Main
 mode = st.session_state.app_mode
 
 if not active_session["history"]:
@@ -349,7 +348,7 @@ if not active_session["history"]:
 for msg in active_session["history"]:
     render_history_message(msg, mode)
 
-# ── Upload / Clear Files ──
+# Upload/Clear
 with st.container():
     if active_session["documents"]:
         st.markdown("**📄 Tài liệu trong chat này:**")
@@ -405,7 +404,7 @@ with st.container():
             st.rerun()
 
 
-# ─── Chat Input ───────────────────────────────────────────────────────────────
+# Input Chat
 if query := st.chat_input("Hỏi SmartDoc..."):
     active_session["history"].append({"role": "user", "content": query})
     if len(active_session["history"]) == 1:
@@ -419,7 +418,7 @@ if query := st.chat_input("Hỏi SmartDoc..."):
     from application_layer import load_dependencies
     mods = load_dependencies()
 
-    # ── Chế độ RAG ───────────────────────────────────────────────
+    # RAG
     if mode == "rag":
         with st.chat_message("assistant", avatar="🔵"):
             with st.spinner("⚡ RAG đang xử lý..."):
@@ -434,7 +433,6 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                 if res.get("sources"):
                     display_sources(res["sources"])
 
-                # ── THÊM MỚI: Hiển thị câu 9 ngay sau trả lời ───
                 if res.get("latency"):
                     lat = res["latency"]
                     with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
@@ -448,7 +446,6 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                         else:
                             st.caption("Bật 🎯 Rerank để xem so sánh.")
 
-                # ── THÊM MỚI: Hiển thị câu 10 ngay sau trả lời ──
                 if res.get("self_rag"):
                     meta = res["self_rag"]
                     ev = meta["evaluation"]
@@ -465,7 +462,7 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                         st.progress(ev["score"],
                                     text=f"{ev['icon']} {ev['label']} — {ev['score']*100:.0f}%")
 
-                # ── THÊM MỚI: Lưu latency & self_rag vào history ─
+                # Lưu vào history
                 active_session["history"].append({
                     "role": "assistant",
                     "content": res["answer"],
@@ -474,7 +471,7 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                     "self_rag": res.get("self_rag"),  # Câu 10
                 })
 
-    # ── Chế độ CO-RAG ────────────────────────────────────────────
+    # Co-RAG
     elif mode == "corag":
         with st.chat_message("assistant", avatar="🟣"):
             with st.spinner("🛡️ CO-RAG đang đánh giá và xử lý..."):

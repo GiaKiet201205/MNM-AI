@@ -1,4 +1,3 @@
-# application_layer.py
 import re
 import tempfile
 import os
@@ -87,10 +86,7 @@ def get_chunk_stats(chunks: list) -> dict:
     }
 
 
-# ═══════════════════════════════════════════════════════════════════
-#  CÂU 9 — RE-RANKING VỚI CROSS-ENCODER
-# ═══════════════════════════════════════════════════════════════════
-
+ # Câu 9
 def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
     """
     Câu 9: Re-ranking với Cross-Encoder.
@@ -116,10 +112,7 @@ def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
     return reranked_docs, doc_scores, elapsed_ms
 
 
-# ═══════════════════════════════════════════════════════════════════
-#  CÂU 10 — SELF-RAG
-# ═══════════════════════════════════════════════════════════════════
-
+# Câu 10
 def rewrite_query(query: str, llm) -> str:
     """
     Câu 10 - Bước 1: Query Rewriting.
@@ -194,11 +187,7 @@ Câu trả lời: {answer[:300]}
         "score": score_map[label],
     }
 
-
-# ═══════════════════════════════════════════════════════════════════
-#  HÀM CHÍNH — Answer the question
-# ═══════════════════════════════════════════════════════════════════
-
+# Main
 def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k, use_hybrid):
     """
     Pipeline RAG tích hợp Câu 9 & 10.
@@ -209,10 +198,9 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
     """
     llm = get_llm(mods)
 
-    # Đọc trạng thái Self-RAG từ session_state (toggle trong sidebar)
     use_self_rag = st.session_state.get('use_self_rag', False)
 
-    # ── Không có file → chat thông thường ────────────────────────
+    # Chat thường nếu không có file
     if not vector_store:
         prompt = f"Lịch sử: {history[-3:]}\n\nNgười dùng: {query}\nTrợ lý:"
         return {
@@ -222,14 +210,13 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
             "self_rag": None,
         }
 
-    # ── CÂU 10 Bước 1: Query Rewriting ───────────────────────────
+    # Câu 10
     original_query = query
     search_query = query
 
     if use_self_rag:
         search_query = rewrite_query(query, llm)
 
-    # ── Retrieve — đo thời gian Bi-Encoder ───────────────────────
     if use_hybrid and all_chunks:
         base = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": k})
         bm25 = mods['BM25Retriever'].from_documents(all_chunks)
@@ -246,12 +233,11 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
         relevant_docs = [doc for doc, _ in scored]
         doc_scores = [float(1.0 / (1.0 + dist)) for _, dist in scored]
 
-    # ── CÂU 9: Re-ranking với Cross-Encoder ──────────────────────
+    # Câu 9
     rerank_ms = 0
     if use_rerank and relevant_docs:
         relevant_docs, doc_scores, rerank_ms = rerank_with_cross_encoder(search_query, relevant_docs, k)
 
-    # ── Build numbered context (enables [1][2] inline citations) ───────
     context = "\n\n".join([f"[{i+1}] {d.page_content}" for i, d in enumerate(relevant_docs)])
 
     sources = [{
@@ -264,7 +250,6 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
         "score": doc_scores[i] if i < len(doc_scores) else 0.8,
     } for i, d in enumerate(relevant_docs)]
 
-    # ── Prompt ─────────────────────────────────────────────────────────
     hist_lines = [
         f"{'Người dùng' if m['role'] == 'user' else 'Trợ lý'}: {m['content'][:300]}"
         for m in (history[-4:-1] or [])
@@ -290,7 +275,7 @@ Trả lời:"""
     for src in sources:
         src["answer"] = answer
 
-    # ── CÂU 10 Bước 2: Self-Evaluation ───────────────────────────
+    # Câu 10
     self_rag_meta = None
     if use_self_rag:
         evaluation = self_evaluate(query, context, answer, llm)
@@ -301,7 +286,7 @@ Trả lời:"""
             "evaluation": evaluation,
         }
 
-    # ── Latency metadata (Câu 9) ──────────────────────────────────
+    # Câu 9
     latency_meta = {
         "retrieve_ms": retrieve_ms,
         "rerank_ms": rerank_ms,

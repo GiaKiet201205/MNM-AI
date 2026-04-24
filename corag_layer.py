@@ -1,12 +1,9 @@
-# corag_layer.py
-# CO-RAG: Corrective Retrieval-Augmented Generation
-# Nâng cấp so với RAG thường: đánh giá, sửa lỗi, và tinh chỉnh retrieval tự động
 
 import re
 from typing import Optional
 
 
-# ─── BƯỚC 1: ĐÁNH GIÁ ĐỘ LIÊN QUAN (Relevance Grader) ─────────────────────
+# Đánh giá
 def grade_documents(llm, query: str, docs: list) -> dict:
     """
     Chấm điểm từng document xem có thực sự liên quan đến query không.
@@ -43,7 +40,7 @@ Trả lời:"""
     }
 
 
-# ─── BƯỚC 2: TÁI VIẾT QUERY (Query Rewriter) ────────────────────────────────
+# Viết query
 def rewrite_query(llm, original_query: str) -> str:
     """
     Nếu retrieval ban đầu không tốt, tự động viết lại câu hỏi để tìm kiếm hiệu quả hơn.
@@ -64,7 +61,7 @@ Câu hỏi đã viết lại:"""
         return original_query
 
 
-# ─── BƯỚC 3: KIỂM TRA HALLUCINATION (Hallucination Grader) ──────────────────
+# Kiểm tra
 def check_hallucination(llm, answer: str, context: str) -> dict:
     """
     Kiểm tra xem câu trả lời có bịa đặt thông tin không có trong tài liệu không.
@@ -92,7 +89,7 @@ Câu trả lời: {answer[:300]}
     return {"grounded": grounded, "confidence": confidence}
 
 
-# ─── PIPELINE CO-RAG CHÍNH ──────────────────────────────────────────────────
+
 def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank, k, use_hybrid, mods) -> dict:
     """
     Pipeline CO-RAG đầy đủ:
@@ -115,7 +112,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
             "relevance_quality": "n/a", "relevant_ratio": 0
         }
 
-    # ── BƯỚC 1: Retrieve ban đầu ─────────────────────────────────────────────
+    # Retrieve ban đầu
     search_kwargs = {"k": k + 2}  # Lấy thêm để có dữ liệu grading
     base_retriever = vector_store.as_retriever(search_type="similarity", search_kwargs=search_kwargs)
 
@@ -129,7 +126,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
     retrieved_docs = retriever.invoke(query)
     steps_log.append({"step": f"🔍 Retrieve lần 1", "detail": f"Tìm được {len(retrieved_docs)} đoạn văn"})
 
-    # ── BƯỚC 2: Grade documents ──────────────────────────────────────────────
+    # Grade documents
     grade_result = grade_documents(llm, query, retrieved_docs)
     relevant_docs = [item["doc"] for item in grade_result["graded_docs"] if item["relevant"]]
     steps_log.append({
@@ -137,7 +134,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
         "detail": f"{grade_result['relevant_count']}/{grade_result['total_count']} đoạn liên quan — Chất lượng: {grade_result['quality'].upper()}"
     })
 
-    # ── BƯỚC 3: Nếu chất lượng thấp → Rewrite query & Retrieve lại ──────────
+    # Nếu chất lượng thấp -- Rewrite query & Retrieve lại
     query_rewritten = False
     rewritten_query = query
     if grade_result["quality"] in ("low", "medium"):
@@ -169,7 +166,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
         relevant_docs = retrieved_docs[:k]
         steps_log.append({"step": "⚠️ Fallback", "detail": "Dùng top docs ban đầu vì không tìm được docs liên quan"})
 
-    # ── Reranking (nếu bật) ──────────────────────────────────────────────────
+    # Reranking
     if use_rerank and len(relevant_docs) > 1:
         model = mods['CrossEncoder']('cross-encoder/ms-marco-MiniLM-L-6-v2')
         scores = model.predict([(query, d.page_content) for d in relevant_docs])
@@ -177,7 +174,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
         relevant_docs = [d for _, d in ranked[:k]]
         steps_log.append({"step": "🎯 Reranking", "detail": f"Sắp xếp lại, giữ top {k}"})
 
-    # ── BƯỚC 4: Sinh câu trả lời ─────────────────────────────────────────────
+    # Câu trả lời
     context = "\n\n".join([d.page_content for d in relevant_docs[:k]])
     history_text = "\n".join([f"{m['role'].upper()}: {m['content']}" for m in history[-4:]])
 
@@ -197,7 +194,7 @@ Trả lời chi tiết:"""
     answer = llm.invoke(prompt).strip()
     steps_log.append({"step": "💬 Sinh câu trả lời", "detail": f"Dựa trên {len(relevant_docs[:k])} đoạn tài liệu"})
 
-    # ── BƯỚC 5: Kiểm tra Hallucination ──────────────────────────────────────
+    # Kiểm tra Hallucination
     hall_check = check_hallucination(llm, answer, context)
     steps_log.append({
         "step": f"🛡️ Kiểm tra Hallucination",
