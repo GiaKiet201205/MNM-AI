@@ -5,6 +5,9 @@ import math
 import time
 from pathlib import Path
 import streamlit as st
+from PIL import Image
+import pytesseract
+from pdf2image import convert_from_path
 from model_layer import get_llm
 from data_layer import build_vector_store
 
@@ -46,20 +49,52 @@ def _clean_text(text: str) -> str:
 
 
 def process_file(uploaded_file, chunk_size, chunk_overlap) -> list:
+    """
+    Xử lý tệp tin đầu vào với cơ chế Hybrid OCR để đọc ảnh và con dấu.
+    """
     suffix = Path(uploaded_file.name).suffix.lower()
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
         tmp.write(uploaded_file.getvalue())
         tmp_path = tmp.name
+
     try:
+        # Khởi tạo loader mặc định
         loader = mods['PDFPlumberLoader'](tmp_path) if suffix == '.pdf' else mods['Docx2txtLoader'](tmp_path)
         docs = loader.load()
-        for doc in docs:
-            doc.metadata['source_file'] = uploaded_file.name
+
+        # Xử lý nâng cao cho định dạng PDF (Xử lý ảnh và con dấu)
+        if suffix == '.pdf':
+            # Chuyển đổi toàn bộ trang PDF thành hình ảnh để sẵn sàng OCR
+            pages_as_images = convert_from_path(tmp_path)
+
+            for i, doc in enumerate(docs):
+                # Ngưỡng kiểm tra: Nếu trang có ít hơn 100 ký tự văn bản số, khả năng cao là ảnh hoặc con dấu
+                is_likely_image_or_seal = len(doc.page_content.strip()) < 100
+
+                if is_likely_image_or_seal:
+                    # Sử dụng Tesseract để quét chữ từ con dấu/hình ảnh
+                    ocr_text = pytesseract.image_to_string(pages_as_images[i], lang='vie+eng')
+                    if ocr_text.strip():
+                        doc.page_content += f"\n[Nội dung từ ảnh/con dấu]:\n{ocr_text}"
+
+                doc.metadata['source_file'] = uploaded_file.name
+                doc.metadata['page'] = i
+        else:
+            for doc in docs:
+                doc.metadata['source_file'] = uploaded_file.name
+
+        # Chia nhỏ văn bản thành các Chunks
         splitter = mods['RecursiveCharacterTextSplitter'](chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         chunks = splitter.split_documents(docs)
+
         for i, chunk in enumerate(chunks):
             chunk.metadata['chunk_id'] = i
+
         return chunks
+
+    except Exception as e:
+        print(f"Lỗi khi xử lý tệp: {e}")
+        return []
     finally:
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
@@ -86,20 +121,8 @@ def get_chunk_stats(chunks: list) -> dict:
     }
 
 
- # Câu 9
 def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
-    """
-    Câu 9: Re-ranking với Cross-Encoder.
-
-    So sánh với Bi-Encoder (FAISS):
-    - Bi-Encoder: embed query và chunk RIÊNG LẺ → cosine similarity → nhanh nhưng kém chính xác
-    - Cross-Encoder: đọc ĐỒNG THỜI query + chunk → hiểu ngữ cảnh sâu hơn → chính xác hơn
-
-    Returns:
-        (docs đã rerank, scores, thời gian ms)
-    """
     model = mods['CrossEncoder']('cross-encoder/ms-marco-MiniLM-L-6-v2')
-
     t_start = time.time()
     pairs = [(query, doc.page_content) for doc in documents]
     ce_scores = model.predict(pairs)
@@ -112,18 +135,7 @@ def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
     return reranked_docs, doc_scores, elapsed_ms
 
 
-# Câu 10
 def rewrite_query(query: str, llm) -> str:
-    """
-    Câu 10 - Bước 1: Query Rewriting.
-
-    Vấn đề: Câu hỏi mơ hồ như "nó hoạt động thế nào?" → FAISS tìm sai.
-    Giải pháp: LLM tự cải thiện câu hỏi thành dạng rõ ràng hơn trước khi search.
-
-    Ví dụ:
-        "nó hoạt động thế nào?" → "Hệ thống RAG trong SmartDoc AI hoạt động như thế nào?"
-        "so sánh 2 cái đó"      → "So sánh Bi-Encoder và Cross-Encoder về độ chính xác"
-    """
     prompt = f"""Viết lại câu hỏi sau thành dạng rõ ràng và cụ thể hơn để tìm kiếm trong tài liệu đạt kết quả tốt nhất.
 Chỉ trả về câu hỏi đã viết lại, không giải thích thêm bất kỳ điều gì.
 
@@ -139,16 +151,6 @@ Câu hỏi viết lại:"""
 
 
 def self_evaluate(query: str, context: str, answer: str, llm) -> dict:
-    """
-    Câu 10 - Bước 2: Self-Evaluation + Confidence Scoring.
-
-    LLM tự đánh giá câu trả lời có thực sự dựa trên context lấy từ tài liệu không.
-
-    3 mức:
-        SUPPORTED (90%)           → Hoàn toàn từ tài liệu
-        PARTIALLY_SUPPORTED (55%) → Một phần từ tài liệu
-        NOT_SUPPORTED (20%)       → Không có trong tài liệu
-    """
     prompt = f"""Đánh giá xem câu trả lời bên dưới có được hỗ trợ bởi ngữ cảnh không.
 Chỉ trả về đúng 1 trong 3 giá trị sau, không giải thích:
 SUPPORTED
@@ -162,14 +164,12 @@ Câu trả lời: {answer[:300]}
 Đánh giá:"""
     try:
         raw = llm.invoke(prompt).strip().upper()
-        if "NOT_SUPPORTED" in raw or ("NOT" in raw and "SUPPORT" in raw):
+        if "NOT_SUPPORTED" in raw:
             label = "NOT_SUPPORTED"
-        elif "PARTIALLY" in raw or "PARTIAL" in raw:
+        elif "PARTIALLY" in raw:
             label = "PARTIALLY_SUPPORTED"
-        elif "SUPPORTED" in raw:
-            label = "SUPPORTED"
         else:
-            label = "PARTIALLY_SUPPORTED"
+            label = "SUPPORTED"
     except Exception:
         label = "PARTIALLY_SUPPORTED"
 
@@ -187,22 +187,13 @@ Câu trả lời: {answer[:300]}
         "score": score_map[label],
     }
 
-# Main
+
 def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k, use_hybrid):
-    """
-    Pipeline RAG tích hợp Câu 9 & 10.
-    Chữ ký hàm GIỮ NGUYÊN so với app.py → không conflict khi merge.
-
-    Câu 9: Cross-Encoder reranking + đo latency
-    Câu 10: Query rewriting + Self-evaluation (đọc từ session_state)
-    """
     llm = get_llm(mods)
-
     use_self_rag = st.session_state.get('use_self_rag', False)
 
-    # Chat thường nếu không có file
     if not vector_store:
-        prompt = f"Lịch sử: {history[-3:]}\n\nNgười dùng: {query}\nTrợ lý:"
+        prompt = f"Bạn là trợ lý AI chuyên nghiệp. Yêu cầu bắt buộc: Chỉ sử dụng tiếng Việt.\n\nLịch sử: {history[-3:]}\n\nNgười dùng: {query}\nTrợ lý:"
         return {
             "answer": llm.invoke(prompt).strip(),
             "sources": [],
@@ -210,12 +201,8 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
             "self_rag": None,
         }
 
-    # Câu 10
     original_query = query
-    search_query = query
-
-    if use_self_rag:
-        search_query = rewrite_query(query, llm)
+    search_query = rewrite_query(query, llm) if use_self_rag else query
 
     if use_hybrid and all_chunks:
         base = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": k})
@@ -233,12 +220,11 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
         relevant_docs = [doc for doc, _ in scored]
         doc_scores = [float(1.0 / (1.0 + dist)) for _, dist in scored]
 
-    # Câu 9
     rerank_ms = 0
     if use_rerank and relevant_docs:
         relevant_docs, doc_scores, rerank_ms = rerank_with_cross_encoder(search_query, relevant_docs, k)
 
-    context = "\n\n".join([f"[{i+1}] {d.page_content}" for i, d in enumerate(relevant_docs)])
+    context = "\n\n".join([f"[{i + 1}] {d.page_content}" for i, d in enumerate(relevant_docs)])
 
     sources = [{
         "file": d.metadata.get("source_file", "Unknown"),
@@ -250,20 +236,15 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
         "score": doc_scores[i] if i < len(doc_scores) else 0.8,
     } for i, d in enumerate(relevant_docs)]
 
-    hist_lines = [
-        f"{'Người dùng' if m['role'] == 'user' else 'Trợ lý'}: {m['content'][:300]}"
-        for m in (history[-4:-1] or [])
-    ]
+    hist_lines = [f"{'Người dùng' if m['role'] == 'user' else 'Trợ lý'}: {m['content'][:200]}" for m in history[-3:]]
     hist_block = ("\nLịch sử hội thoại:\n" + "\n".join(hist_lines) + "\n") if hist_lines else ""
 
     prompt = f"""Bạn là trợ lý AI thông minh hỗ trợ đọc hiểu tài liệu.
-
-Quy tắc trả lời:
-- Trả lời súc tích, đúng trọng tâm, KHÔNG chép nguyên văn tài liệu
-- Dùng bullet (–) hoặc đánh số khi liệt kê nhiều ý
-- Sau mỗi thông tin, trích nguồn bằng [1], [2], [3] tương ứng với đoạn tài liệu
-- Trả lời bằng ngôn ngữ của câu hỏi
+Quy tắc:
+- Trả lời súc tích, trích nguồn dạng [1], [2]
+- Ưu tiên thông tin từ hình ảnh/con dấu nếu có nhãn [Nội dung từ ảnh/con dấu]
 - Nếu tài liệu không đủ thông tin, nói rõ
+
 {hist_block}
 Tài liệu tham khảo:
 {context}
@@ -272,21 +253,13 @@ Câu hỏi: {query}
 Trả lời:"""
 
     answer = llm.invoke(prompt).strip()
-    for src in sources:
-        src["answer"] = answer
+    self_rag_meta = {
+        "original_query": original_query,
+        "rewritten_query": search_query,
+        "was_rewritten": search_query != original_query,
+        "evaluation": self_evaluate(query, context, answer, llm),
+    } if use_self_rag else None
 
-    # Câu 10
-    self_rag_meta = None
-    if use_self_rag:
-        evaluation = self_evaluate(query, context, answer, llm)
-        self_rag_meta = {
-            "original_query": original_query,
-            "rewritten_query": search_query,
-            "was_rewritten": search_query != original_query,
-            "evaluation": evaluation,
-        }
-
-    # Câu 9
     latency_meta = {
         "retrieve_ms": retrieve_ms,
         "rerank_ms": rerank_ms,
@@ -294,9 +267,4 @@ Trả lời:"""
         "reranking_used": use_rerank,
     }
 
-    return {
-        "answer": answer,
-        "sources": sources,
-        "latency": latency_meta,
-        "self_rag": self_rag_meta,
-    }
+    return {"answer": answer, "sources": sources, "latency": latency_meta, "self_rag": self_rag_meta}
