@@ -1,13 +1,19 @@
 import re
 import streamlit as st
 import uuid
-from data_layer import load_chat_history, save_chat_history
+from data_layer import (
+    init_db, save_session, get_all_sessions, load_history,
+    save_message, save_document_chunks, load_all_chunks,
+    delete_session_data
+)
 from application_layer import process_file, create_vector_store, answer_question, get_chunk_stats
 from corag_layer import answer_with_corag
 
+init_db()
+
 st.set_page_config(page_title="SmartDoc AI", page_icon="✨", layout="wide")
 
-# ─── CSS ─────────────────────────────────────────────────────────────────────
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -57,10 +63,16 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .cit-snip { font-size: .71rem; color: #94a3b8; line-height: 1.5; font-style: italic; border-left: 2px solid #4c1d95; padding-left: 7px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .cit-bar { height: 2px; background: #2a2a3d; border-radius: 1px; margin-top: 8px; }
 .cit-bar-fill { height: 100%; background: linear-gradient(90deg, #4c1d95, #7c3aed); border-radius: 1px; }
+
+/* Style mới cho dòng độ chính xác */
+.accuracy-line { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: #0f172a; border-radius: 6px; margin-top: 8px; border-left: 3px solid #7c3aed; font-size: 0.85rem; }
+.accuracy-value { font-weight: 700; color: #4ade80; }
+.accuracy-label { color: #94a3b8; font-weight: 500; }
 </style>
 """, unsafe_allow_html=True)
 
 
+# highlight từ khóa trọng tâm
 def highlight_keywords(text: str, query: str, answer: str = "") -> str:
     combined = f"{query} {answer}"
     seen = set()
@@ -76,6 +88,7 @@ def highlight_keywords(text: str, query: str, answer: str = "") -> str:
     return text
 
 
+# Giao diện
 def display_sources(sources):
     if not sources:
         return
@@ -92,7 +105,7 @@ def display_sources(sources):
             st.markdown(f"""
 <div class="cit-card">
   <div class="cit-row">
-    <div class="cit-badge">{i+1}</div>
+    <div class="cit-badge">{i + 1}</div>
     <div class="cit-info">
       <div class="cit-fname" title="{fname}">📄 {fname_disp}</div>
       <div class="cit-page">Trang {src['page']} &middot; Đoạn #{src['chunk_id']}</div>
@@ -111,14 +124,49 @@ def display_sources(sources):
                 st.markdown(full)
 
 
-# ─── Init ─────────────────────────────────────────────────────────────────────
+# Hàm hiển thị độ chuẩn xác mới
+def render_accuracy_metric(msg, mode):
+    accuracy_score = None
+    status_text = ""
+
+    if mode == "corag" and msg.get("corag_meta"):
+        accuracy_score = msg["corag_meta"].get("confidence")
+        is_grounded = msg["corag_meta"].get("grounded", True)
+        status_text = "Có căn cứ" if is_grounded else "Có thể suy diễn"
+    elif mode == "rag" and msg.get("self_rag"):
+        eval_data = msg["self_rag"].get("evaluation", {})
+        accuracy_score = int(eval_data.get("score", 0) * 100)
+        status_text = eval_data.get("label_vn", "Đang đánh giá")
+
+    if accuracy_score is not None:
+        color = "#4ade80" if accuracy_score >= 70 else ("#fbbf24" if accuracy_score >= 40 else "#f87171")
+        st.markdown(f"""
+        <div class="accuracy-line" style="border-left-color: {color}">
+            <span class="accuracy-label">🎯 Độ chuẩn xác:</span>
+            <span class="accuracy-value" style="color: {color}">{accuracy_score}%</span>
+            <span style="color: #475569; margin: 0 4px;">|</span>
+            <span class="accuracy-label">{status_text}</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+
 def init_session():
-    saved = load_chat_history()
-    if saved:
-        st.session_state.chat_sessions = saved
-        st.session_state.current_id = list(saved.keys())[-1]
+    sessions_db = get_all_sessions()
+    st.session_state.chat_sessions = {}
+
+    if sessions_db:
+        for row in reversed(sessions_db):
+            sid = row["id"]
+            st.session_state.chat_sessions[sid] = {
+                "name": row["name"],
+                "history": [],
+                "documents": {},
+                "all_chunks_data": []
+            }
+        st.session_state.current_id = sessions_db[0]["id"]
     else:
         new_id = str(uuid.uuid4())
+        save_session(new_id, "Trò chuyện mới")
         st.session_state.chat_sessions = {
             new_id: {"name": "Trò chuyện mới", "history": [], "documents": {}, "all_chunks_data": []}
         }
@@ -134,7 +182,6 @@ def init_session():
         'confirm_clear_docs': False,
         'app_mode': 'rag',
         'selected_docs': [],
-        # ── THÊM MỚI: Câu 10 Self-RAG ────────────────────────────
         'use_self_rag': False,
     }
     for k, v in defaults.items():
@@ -146,6 +193,21 @@ if 'chat_sessions' not in st.session_state:
     init_session()
 
 active_id = st.session_state.current_id
+
+# Quản lý bộ nhớ cục bộ
+if not st.session_state.chat_sessions[active_id]["history"]:
+    st.session_state.chat_sessions[active_id]["history"] = load_history(active_id)
+
+if not st.session_state.chat_sessions[active_id]["all_chunks_data"]:
+    chunks = load_all_chunks(active_id)
+    st.session_state.chat_sessions[active_id]["all_chunks_data"] = chunks
+    docs_dict = {}
+    for c in chunks:
+        fname = c.metadata.get("source_file")
+        if fname:
+            docs_dict[fname] = True
+    st.session_state.chat_sessions[active_id]["documents"] = docs_dict
+
 active_session = st.session_state.chat_sessions[active_id]
 
 if active_session["all_chunks_data"] and 'vector_store' not in st.session_state:
@@ -154,22 +216,27 @@ elif not active_session["all_chunks_data"] and 'vector_store' in st.session_stat
     if 'vector_store' in st.session_state:
         del st.session_state.vector_store
 
-
 # Sidebar
 with st.sidebar:
     st.markdown("### 💬 Lịch sử trò chuyện")
 
+    # Khối tạo mới cuộc trò chuyện
     if st.button("➕ Trò chuyện mới", use_container_width=True):
         new_id = str(uuid.uuid4())
+        save_session(new_id, "Trò chuyện mới")
+        # Khởi tạo cấu trúc dữ liệu cho phiên mới
         st.session_state.chat_sessions[new_id] = {
-            "name": "Trò chuyện mới", "history": [], "documents": {}, "all_chunks_data": []
+            "name": "Trò chuyện mới",
+            "history": [],
+            "documents": {},
+            "all_chunks_data": []
         }
         st.session_state.current_id = new_id
         if 'vector_store' in st.session_state:
             del st.session_state.vector_store
-        save_chat_history(st.session_state.chat_sessions)
         st.rerun()
 
+    # Hiển thị danh sách các phiên trò chuyện hiện có
     for sid, sdata in reversed(list(st.session_state.chat_sessions.items())):
         col_name, col_del = st.columns([0.8, 0.2])
         with col_name:
@@ -182,17 +249,19 @@ with st.sidebar:
             if st.button("🗑️", key=f"del_{sid}"):
                 st.session_state.confirm_del_id = sid
 
+    # Logic xác nhận xóa phiên
     if st.session_state.confirm_del_id:
         st.warning("Xóa chat này?")
         c1, c2 = st.columns(2)
         if c1.button("Xác nhận", key="y_c"):
-            del st.session_state.chat_sessions[st.session_state.confirm_del_id]
+            del_id = st.session_state.confirm_del_id
+            delete_session_data(del_id)
+            del st.session_state.chat_sessions[del_id]
             st.session_state.confirm_del_id = None
             if not st.session_state.chat_sessions:
-                init_session()
+                init_session()  # Tạo mới nếu không còn session nào
             else:
-                st.session_state.current_id = list(st.session_state.chat_sessions.keys())[0]
-            save_chat_history(st.session_state.chat_sessions)
+                st.session_state.current_id = list(st.session_state.chat_sessions.keys())[-1]
             st.rerun()
         if c2.button("Hủy", key="n_c"):
             st.session_state.confirm_del_id = None
@@ -200,6 +269,7 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Bộ lọc tài liệu giúp thu hẹp phạm vi truy vấn
     st.markdown("### 📂 Bộ lọc tài liệu")
     available_files = list(active_session["documents"].keys())
     if available_files:
@@ -213,6 +283,7 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Chọn thuật toán xử lý: RAG thường hoặc CO-RAG tự đánh giá
     st.markdown("### 🔀 Chế độ hoạt động")
     mode_options = {"RAG (Chuẩn)": "rag", "CO-RAG (Nâng cao)": "corag"}
     st.session_state.app_mode = mode_options[st.radio(
@@ -227,6 +298,7 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Phần mở rộng cấu hình chi tiết cho người dùng nâng cao
     with st.expander("⚙️ Cấu hình hệ thống"):
         st.session_state.chunk_size = st.slider("Chunk Size", 500, 2000, st.session_state.chunk_size)
         st.session_state.chunk_overlap = st.slider("Chunk Overlap", 0, 200, st.session_state.chunk_overlap)
@@ -234,15 +306,15 @@ with st.sidebar:
         st.session_state.use_reranking = st.toggle("🎯 Rerank (Cross-Encoder)", value=st.session_state.use_reranking)
         st.session_state.retriever_k = st.slider("Top-K Retrieval", 1, 10, st.session_state.retriever_k)
 
-        # ── THÊM MỚI: Câu 10 — Toggle Self-RAG ──────────────────
         st.markdown("---")
+        # Self-RAG giúp AI tự phê bình câu trả lời của chính mình
         st.session_state.use_self_rag = st.toggle(
             "🧠 Self-RAG",
             value=st.session_state.use_self_rag,
-            help="Câu 10: LLM tự cải thiện câu hỏi (query rewriting) và tự đánh giá câu trả lời (self-evaluation)."
+            help="Hệ thống tự viết lại câu hỏi và tự đánh giá tính chính xác của câu trả lời dựa trên tài liệu."
         )
         if st.session_state.use_self_rag:
-            st.caption("🔁 Gọi LLM thêm 2 lần: rewrite query + self-evaluate.")
+            st.caption("🔁 Quá trình sẽ tốn thêm tài nguyên cho bước Self-Evaluate.")
 
 
 # Helper functions
@@ -253,13 +325,16 @@ def render_history_message(msg, mode):
     with st.chat_message(role, avatar=avatar):
         st.markdown(msg["content"])
 
-        if role == "assistant" and msg.get("sources"):
-            display_sources(msg["sources"])
+        if role == "assistant":
+            if msg.get("sources"):
+                display_sources(msg["sources"])
 
-        # Câu 9
+            # Render dòng độ chính xác tại đây
+            render_accuracy_metric(msg, mode)
+
         if role == "assistant" and msg.get("latency"):
             lat = msg["latency"]
-            with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
+            with st.expander("⏱️ Bi-Encoder vs Cross-Encoder"):
                 col1, col2, col3 = st.columns(3)
                 col1.metric("🔵 FAISS Retrieve", f"{lat['retrieve_ms']} ms",
                             help="Bi-Encoder: embed riêng lẻ → nhanh")
@@ -273,11 +348,10 @@ def render_history_message(msg, mode):
                 else:
                     st.caption("Bật **🎯 Rerank** trong cấu hình để xem so sánh.")
 
-        # Câu 10
         if role == "assistant" and msg.get("self_rag"):
             meta = msg["self_rag"]
             ev = meta["evaluation"]
-            with st.expander(f"🧠 Câu 10 — Self-RAG  {ev['icon']} {ev['label_vn']}"):
+            with st.expander(f"🧠 Self-RAG  {ev['icon']} {ev['label_vn']}"):
                 st.markdown("**🔁 Query Rewriting:**")
                 col_a, col_b = st.columns(2)
                 with col_a:
@@ -289,7 +363,7 @@ def render_history_message(msg, mode):
                         st.markdown("Query rewritten: *(không thay đổi)*")
                 st.markdown("---")
                 st.markdown("**🔍 Self-Evaluation:**")
-                st.progress(ev["score"], text=f"{ev['icon']} {ev['label']} — Độ tin cậy: {ev['score']*100:.0f}%")
+                st.progress(ev["score"], text=f"{ev['icon']} {ev['label']} — Độ tin cậy: {ev['score'] * 100:.0f}%")
                 explanation = {
                     "SUPPORTED": "✅ Câu trả lời hoàn toàn dựa trên nội dung tài liệu.",
                     "PARTIALLY_SUPPORTED": "⚠️ Một phần từ tài liệu, một phần từ kiến thức tổng hợp.",
@@ -302,28 +376,7 @@ def render_history_message(msg, mode):
 
 
 def _render_corag_meta(meta: dict):
-    conf = meta.get("confidence", 0)
-    grounded = meta.get("grounded", True)
-    quality = meta.get("relevance_quality", "n/a")
-    rewritten = meta.get("query_rewritten", False)
-    rewritten_q = meta.get("rewritten_query", "")
     steps = meta.get("corag_steps", [])
-
-    bar_color = "#4ade80" if conf >= 70 else ("#fbbf24" if conf >= 40 else "#f87171")
-    quality_class = f"quality-{quality}" if quality in ("high", "medium", "low") else ""
-    ground_icon = "✅" if grounded else "⚠️"
-
-    st.markdown(f"""
-    <div style="margin-top:10px; padding:10px; background:#0a0a14; border-radius:8px; border:1px solid #7c3aed25;">
-        <div style="display:flex; gap:16px; font-size:0.78rem; margin-bottom:8px; flex-wrap:wrap;">
-            <span>{ground_icon} <b style="color:#94a3b8">Grounded</b></span>
-            <span>📊 Chất lượng: <span class="{quality_class}">{quality.upper()}</span></span>
-            {"<span>✏️ Query đã viết lại: <i style='color:#a78bfa'>" + rewritten_q + "</i></span>" if rewritten else ""}
-        </div>
-        <div class="conf-label">Confidence: {conf}%</div>
-        <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:{conf}%; background:linear-gradient(90deg,{bar_color},{bar_color}aa)"></div></div>
-    </div>
-    """, unsafe_allow_html=True)
 
     if steps:
         with st.expander("🔍 Xem các bước CO-RAG"):
@@ -334,7 +387,6 @@ def _render_corag_meta(meta: dict):
             st.markdown(step_html, unsafe_allow_html=True)
 
 
-# Main
 mode = st.session_state.app_mode
 
 if not active_session["history"]:
@@ -373,10 +425,11 @@ with st.container():
 
     if up_files:
         new_f = [f for f in up_files if f.name not in active_session["documents"]]
-        if new_f and st.button(f"⚡ Đang xử lý {len(new_f)} file mới..."):
+        if new_f and st.button(f"⚡ Bắt đầu xử lý {len(new_f)} file mới..."):
             for f in new_f:
                 chunks = process_file(f, st.session_state.chunk_size, st.session_state.chunk_overlap)
                 if chunks:
+                    save_document_chunks(active_id, f.name, chunks)
                     active_session["all_chunks_data"].extend(chunks)
                     active_session["documents"][f.name] = True
             st.session_state.vector_store = create_vector_store(active_session["all_chunks_data"])
@@ -386,7 +439,6 @@ with st.container():
                 f"TB: **{stats['avg_length']}** ký tự | "
                 f"Min: {stats['min_length']} | Max: {stats['max_length']}"
             )
-            save_chat_history(st.session_state.chat_sessions)
             st.rerun()
 
     if st.session_state.confirm_clear_docs:
@@ -397,18 +449,20 @@ with st.container():
             if 'vector_store' in st.session_state:
                 del st.session_state.vector_store
             st.session_state.confirm_clear_docs = False
-            save_chat_history(st.session_state.chat_sessions)
             st.rerun()
         if b2.button("❌ Hủy"):
             st.session_state.confirm_clear_docs = False
             st.rerun()
 
-
-# Input Chat
 if query := st.chat_input("Hỏi SmartDoc..."):
+    save_message(active_id, "user", query)
     active_session["history"].append({"role": "user", "content": query})
-    if len(active_session["history"]) == 1:
-        active_session["name"] = query[:25]
+    if len(active_session["history"]) <= 1:
+        new_name = query[:30] + ("..." if len(query) > 30 else "")
+        active_session["name"] = new_name
+        from data_layer import update_session_name
+
+        update_session_name(active_id, new_name)
 
     with st.chat_message("user", avatar="🧑‍💻"):
         st.markdown(query)
@@ -416,6 +470,7 @@ if query := st.chat_input("Hỏi SmartDoc..."):
     vs = st.session_state.get('vector_store')
     chunks = active_session["all_chunks_data"]
     from application_layer import load_dependencies
+
     mods = load_dependencies()
 
     # RAG
@@ -430,12 +485,16 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                     use_hybrid=st.session_state.use_hybrid,
                 )
                 st.markdown(res["answer"])
+
                 if res.get("sources"):
                     display_sources(res["sources"])
 
+                # Render dòng độ chính xác cho tin nhắn mới tạo
+                render_accuracy_metric({"self_rag": res.get("self_rag")}, mode)
+
                 if res.get("latency"):
                     lat = res["latency"]
-                    with st.expander("⏱️ Câu 9 — Bi-Encoder vs Cross-Encoder"):
+                    with st.expander("⏱️ Bi-Encoder vs Cross-Encoder"):
                         col1, col2, col3 = st.columns(3)
                         col1.metric("🔵 FAISS Retrieve", f"{lat['retrieve_ms']} ms")
                         col2.metric("🟠 Cross-Encoder Rerank",
@@ -449,7 +508,7 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                 if res.get("self_rag"):
                     meta = res["self_rag"]
                     ev = meta["evaluation"]
-                    with st.expander(f"🧠 Câu 10 — Self-RAG  {ev['icon']} {ev['label_vn']}"):
+                    with st.expander(f"🧠 Self-RAG  {ev['icon']} {ev['label_vn']}"):
                         col_a, col_b = st.columns(2)
                         with col_a:
                             st.markdown(f"Query gốc: *{meta['original_query']}*")
@@ -460,14 +519,17 @@ if query := st.chat_input("Hỏi SmartDoc..."):
                                 st.markdown("Query rewritten: *(không thay đổi)*")
                         st.markdown("---")
                         st.progress(ev["score"],
-                                    text=f"{ev['icon']} {ev['label']} — {ev['score']*100:.0f}%")
+                                    text=f"{ev['icon']} {ev['label']} — {ev['score'] * 100:.0f}%")
 
-                # Lưu vào history
+                save_message(
+                    active_id, "assistant", res["answer"],
+                    sources=res.get("sources"), latency=res.get("latency"), self_rag=res.get("self_rag")
+                )
                 active_session["history"].append({
                     "role": "assistant",
                     "content": res["answer"],
                     "sources": res.get("sources", []),
-                    "latency": res.get("latency"),    # Câu 9
+                    "latency": res.get("latency"),  # Câu 9
                     "self_rag": res.get("self_rag"),  # Câu 10
                 })
 
@@ -475,32 +537,37 @@ if query := st.chat_input("Hỏi SmartDoc..."):
     elif mode == "corag":
         with st.chat_message("assistant", avatar="🟣"):
             with st.spinner("🛡️ CO-RAG đang đánh giá và xử lý..."):
-                if vs is None:
-                    st.warning("Chưa có tài liệu.")
-                else:
-                    cres = answer_with_corag(
-                        query, vs, chunks,
-                        history=active_session["history"][:-1],
-                        use_rerank=st.session_state.use_reranking,
-                        k=st.session_state.retriever_k,
-                        use_hybrid=st.session_state.use_hybrid,
-                        mods=mods,
-                    )
-                    st.markdown(cres["answer"])
-                    if cres.get("sources"):
-                        display_sources(cres["sources"])
+                # Loại bỏ hoàn toàn khối lệnh 'if vs is None:' tại đây
+                cres = answer_with_corag(
+                    query, vs, chunks,
+                    history=active_session["history"][:-1],
+                    use_rerank=st.session_state.use_reranking,
+                    k=st.session_state.retriever_k,
+                    use_hybrid=st.session_state.use_hybrid,
+                    mods=mods,
+                )
+                st.markdown(cres["answer"])
 
-                    meta = {k: cres[k] for k in ["corag_steps", "confidence", "grounded",
-                                                  "query_rewritten", "rewritten_query",
-                                                  "relevance_quality", "relevant_ratio"] if k in cres}
-                    _render_corag_meta(meta)
+                if cres.get("sources"):
+                    display_sources(cres["sources"])
 
-                    active_session["history"].append({
-                        "role": "assistant",
-                        "content": cres["answer"],
-                        "sources": cres.get("sources", []),
-                        "corag_meta": meta
-                    })
+                meta = {k: cres[k] for k in ["corag_steps", "confidence", "grounded",
+                                             "query_rewritten", "rewritten_query",
+                                             "relevance_quality", "relevant_ratio"] if k in cres}
 
-    save_chat_history(st.session_state.chat_sessions)
+                render_accuracy_metric({"corag_meta": meta}, mode)
+
+                _render_corag_meta(meta)
+
+                save_message(
+                    active_id, "assistant", cres["answer"],
+                    sources=cres.get("sources"), corag_meta=meta
+                )
+                active_session["history"].append({
+                    "role": "assistant",
+                    "content": cres["answer"],
+                    "sources": cres.get("sources", []),
+                    "corag_meta": meta
+                })
+
     st.rerun()

@@ -1,4 +1,3 @@
-
 import re
 from typing import Optional
 
@@ -100,7 +99,7 @@ def answer_with_corag(query: str, vector_store, all_chunks, history, use_rerank,
 
     steps_log = []  # Ghi lại các bước để hiển thị trên UI
 
-    # ── Không có tài liệu → trả lời thẳng ──────────────────────────────────
+    # Không có tài liệu → trả lời thẳng
     if not vector_store:
         prompt = f"Lịch sử: {history[-3:]}\n\nNgười dùng: {query}\nTrợ lý:"
         answer = llm.invoke(prompt).strip()
