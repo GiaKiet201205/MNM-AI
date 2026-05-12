@@ -13,6 +13,10 @@ from data_layer import build_vector_store
 
 
 @st.cache_resource(show_spinner=False)
+def get_reranker_model():
+    from sentence_transformers import CrossEncoder
+    return CrossEncoder('cross-encoder/mmarco-mMiniLMv2-L12-H384-v1')
+
 def load_dependencies():
     modules = {}
     try:
@@ -122,7 +126,7 @@ def get_chunk_stats(chunks: list) -> dict:
 
 
 def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
-    model = mods['CrossEncoder']('cross-encoder/ms-marco-MiniLM-L-6-v2')
+    model = get_reranker_model()
     t_start = time.time()
     pairs = [(query, doc.page_content) for doc in documents]
     ce_scores = model.predict(pairs)
@@ -136,13 +140,20 @@ def rerank_with_cross_encoder(query: str, documents: list, k: int) -> tuple:
 
 
 def rewrite_query(query: str, llm) -> str:
-    prompt = f"""Viết lại câu hỏi sau thành dạng rõ ràng và cụ thể hơn để tìm kiếm trong tài liệu đạt kết quả tốt nhất.
-Chỉ trả về câu hỏi đã viết lại, không giải thích thêm bất kỳ điều gì.
+    prompt = f"""Bạn là hệ thống tối ưu hóa truy vấn tìm kiếm vector.
+Nhiệm vụ: Viết lại câu hỏi sau để quá trình Semantic Search hoạt động hiệu quả nhất.
+Yêu cầu bắt buộc:
+- Giữ nguyên các từ khóa chính, danh từ riêng và thuật ngữ chuyên ngành.
+- Chỉ xuất ra ĐÚNG MỘT câu hỏi đã tối ưu.
+- Tuyệt đối không thêm các từ như "Dạ", "Đây là", "Câu hỏi tối ưu là".
 
 Câu hỏi gốc: {query}
 Câu hỏi viết lại:"""
     try:
         result = llm.invoke(prompt).strip()
+        # Loại bỏ các tiền tố sinh ra do hội thoại thừa của LLM
+        result = re.sub(r'^(câu hỏi( đã)? (viết lại|tối ưu)( là)?[:\s]+)', '', result, flags=re.IGNORECASE).strip()
+        result = result.replace('"', '').replace("'", "")
         if result and 5 < len(result) < 400:
             return result
     except Exception:
@@ -151,25 +162,31 @@ Câu hỏi viết lại:"""
 
 
 def self_evaluate(query: str, context: str, answer: str, llm) -> dict:
-    prompt = f"""Đánh giá xem câu trả lời bên dưới có được hỗ trợ bởi ngữ cảnh không.
-Chỉ trả về đúng 1 trong 3 giá trị sau, không giải thích:
-SUPPORTED
-PARTIALLY_SUPPORTED
-NOT_SUPPORTED
+    # Mở rộng giới hạn context lên 3500 và answer lên 1000 để LLM có đủ dữ liệu đối chiếu
+    prompt = f"""Evaluate if the following Answer is supported by the Context.
+You MUST output ONLY ONE of the following keywords. Do not explain.
+- SUPPORTED: The answer is fully explicitly supported by the context.
+- PARTIALLY_SUPPORTED: The answer is partially supported, or contains minor extra info.
+- NOT_SUPPORTED: The answer contradicts the context or uses outside knowledge not in the context.
 
-Câu hỏi: {query}
-Ngữ cảnh: {context[:600]}
-Câu trả lời: {answer[:300]}
+Context:
+{context[:3500]}
 
-Đánh giá:"""
+Question: {query}
+Answer: {answer[:1000]}
+
+Evaluation:"""
     try:
         raw = llm.invoke(prompt).strip().upper()
-        if "NOT_SUPPORTED" in raw:
+        # Bắt các trường hợp LLM tự động dịch nhãn sang tiếng Việt hoặc sinh thêm ký tự
+        if "NOT_SUPPORTED" in raw or "NOT SUPPORTED" in raw:
             label = "NOT_SUPPORTED"
         elif "PARTIALLY" in raw:
             label = "PARTIALLY_SUPPORTED"
-        else:
+        elif "SUPPORTED" in raw:
             label = "SUPPORTED"
+        else:
+            label = "PARTIALLY_SUPPORTED"  # Mức dự phòng an toàn
     except Exception:
         label = "PARTIALLY_SUPPORTED"
 
@@ -204,18 +221,20 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
     original_query = query
     search_query = rewrite_query(query, llm) if use_self_rag else query
 
+    fetch_k = k * 3 if use_rerank else k
+
     if use_hybrid and all_chunks:
-        base = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": k})
+        base = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": fetch_k})
         bm25 = mods['BM25Retriever'].from_documents(all_chunks)
-        bm25.k = k
-        retriever = mods['EnsembleRetriever'](retrievers=[bm25, base], weights=[0.4, 0.6])
+        bm25.k = fetch_k
+        retriever = mods['EnsembleRetriever'](retrievers=[bm25, base], weights=[0.3, 0.7])
         t0 = time.time()
         relevant_docs = retriever.invoke(search_query)
         retrieve_ms = round((time.time() - t0) * 1000)
         doc_scores = [0.82] * len(relevant_docs)
     else:
         t0 = time.time()
-        scored = vector_store.similarity_search_with_score(search_query, k=k)
+        scored = vector_store.similarity_search_with_score(search_query, k=fetch_k)
         retrieve_ms = round((time.time() - t0) * 1000)
         relevant_docs = [doc for doc, _ in scored]
         doc_scores = [float(1.0 / (1.0 + dist)) for _, dist in scored]
@@ -223,6 +242,9 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
     rerank_ms = 0
     if use_rerank and relevant_docs:
         relevant_docs, doc_scores, rerank_ms = rerank_with_cross_encoder(search_query, relevant_docs, k)
+    else:
+        relevant_docs = relevant_docs[:k]
+        doc_scores = doc_scores[:k]
 
     context = "\n\n".join([f"[{i + 1}] {d.page_content}" for i, d in enumerate(relevant_docs)])
 
@@ -239,18 +261,20 @@ def answer_question(query: str, vector_store, all_chunks, history, use_rerank, k
     hist_lines = [f"{'Người dùng' if m['role'] == 'user' else 'Trợ lý'}: {m['content'][:200]}" for m in history[-3:]]
     hist_block = ("\nLịch sử hội thoại:\n" + "\n".join(hist_lines) + "\n") if hist_lines else ""
 
-    prompt = f"""Bạn là trợ lý AI thông minh hỗ trợ đọc hiểu tài liệu.
-Quy tắc:
-- Trả lời súc tích, trích nguồn dạng [1], [2]
-- Ưu tiên thông tin từ hình ảnh/con dấu nếu có nhãn [Nội dung từ ảnh/con dấu]
-- Nếu tài liệu không đủ thông tin, nói rõ
+    prompt = f"""Bạn là hệ thống trí tuệ nhân tạo chuyên phân tích tài liệu kỹ thuật.
+    Quy tắc bắt buộc:
+    - Trích xuất ĐẦY ĐỦ và CHI TIẾT tất cả các thông tin kỹ thuật liên quan đến yêu cầu truy vấn. Tuyệt đối không nén văn bản hoặc lược bỏ các thuật ngữ chuyên môn.
+    - Phân tách và trình bày kết quả phân tích bằng ký hiệu gạch đầu dòng đối với các nhóm thông tin mang tính liệt kê.
+    - Tích hợp trích dẫn nguồn trực tiếp bên cạnh thông tin tham chiếu theo định dạng [1], [2].
+    - Thông tin đầu ra phải hoàn toàn dựa trên tài liệu tham khảo, nghiêm cấm suy diễn độc lập. Thông báo rõ ràng khi tài liệu thiếu dữ kiện đối chiếu.
+    - Ưu tiên phân tích dữ liệu từ khu vực hình ảnh hoặc con dấu nếu hệ thống nhận diện được nhãn chỉ định tương ứng.
 
-{hist_block}
-Tài liệu tham khảo:
-{context}
+    {hist_block}
+    Tài liệu tham khảo:
+    {context}
 
-Câu hỏi: {query}
-Trả lời:"""
+    Câu hỏi: {query}
+    Trả lời:"""
 
     answer = llm.invoke(prompt).strip()
     for src in sources:
