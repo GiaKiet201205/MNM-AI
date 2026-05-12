@@ -11,10 +11,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="062596af-c527-4705-a2de-793d22a82cc3" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+      <assistant-state connection-id="062596af-c527-4705-a2de-793d22a82cc3" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="062596af-c527-4705-a2de-793d22a82cc3" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="062596af-c527-4705-a2de-793d22a82cc3" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
     </assistants>
@@ -30,15 +30,18 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="062596af-c527-4705-a2de-793d22a82cc3">
-      <console name="Connection 2" type="STANDARD" schema="main" session="Main"><![CDATA[DELETE FROM documents WHERE id = 1;
-DELETE FROM messages WHERE id BETWEEN 7 AND 10;]]></console>
+      <console name="Connection 2" type="STANDARD" schema="main" session="Main"><![CDATA[DELETE FROM documents WHERE id 10;
+DELETE FROM messages WHERE id BETWEEN 32 AND 33;
+DELETE FROM sessions WHERE id ca13ce83-e00c-4fe4-b28e-878e89edf6b7;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="062596af-c527-4705-a2de-793d22a82cc3" object-ref="consoles/Connection 2" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
