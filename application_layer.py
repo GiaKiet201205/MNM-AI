@@ -253,6 +253,8 @@ Câu hỏi: {query}
 Trả lời:"""
 
     answer = llm.invoke(prompt).strip()
+    for src in sources:
+        src["answer"] = answer
     self_rag_meta = {
         "original_query": original_query,
         "rewritten_query": search_query,

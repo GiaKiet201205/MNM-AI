@@ -72,14 +72,24 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 """, unsafe_allow_html=True)
 
 
-# highlight từ khóa trọng tâm
+_VI_STOPWORDS = {
+    "được", "trong", "những", "không", "bằng", "hoặc", "theo", "cũng", "đang",
+    "đây", "này", "khi", "các", "với", "đến", "từ", "đó", "như", "còn", "đã",
+    "sẽ", "hơn", "nhất", "rất", "nhiều", "một", "của", "cho", "về", "trên",
+    "dưới", "sau", "trước", "nếu", "thì", "mà", "vì", "nên", "nhưng", "vẫn",
+    "đều", "chỉ", "qua", "lại", "thêm", "nữa", "cần", "phải", "thể", "biết",
+    "làm", "nói", "thấy", "người", "việc", "chưa", "giữa", "mỗi", "toàn",
+    "that", "this", "with", "from", "have", "been", "will", "they", "their",
+    "when", "which", "also", "more", "than", "into", "your", "some",
+}
+
 def highlight_keywords(text: str, query: str, answer: str = "") -> str:
     combined = f"{query} {answer}"
     seen = set()
     keywords = []
     for w in combined.split():
         w_clean = re.sub(r'[^\w]', '', w)
-        if len(w_clean) > 3 and w_clean.lower() not in seen:
+        if len(w_clean) > 3 and w_clean.lower() not in seen and w_clean.lower() not in _VI_STOPWORDS:
             seen.add(w_clean.lower())
             keywords.append(w_clean)
     for kw in keywords:
